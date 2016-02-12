@@ -40,4 +40,17 @@ public class Humanoid : MonoBehaviour
         if (moveDirection.sqrMagnitude > 0)
             CharacterModel.transform.LookAt(transform.position + moveDirection);
     }
+	public float Health {
+		get {
+			return health;
+		}
+
+		set {
+			health = value;
+
+			if (health <= 0) {
+				GameObject.Destroy (this.gameObject);
+			}
+		}
+	}
 }
