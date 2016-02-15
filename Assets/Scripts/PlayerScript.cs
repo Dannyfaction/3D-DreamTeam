@@ -4,11 +4,13 @@ using System.Collections;
 public class PlayerScript : Humanoid {
 
     Vector3 moveDelta = new Vector3();
+    Animator characterAnimator;
     
 
     void Start()
     {
         Controller = transform.GetComponent<CharacterController>();
+        characterAnimator = GetComponentInChildren<Animator>();
     }
 
 
@@ -18,7 +20,6 @@ public class PlayerScript : Humanoid {
     {
         //Move Input detection
 	    moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
-
 
 
         //Velocity change
