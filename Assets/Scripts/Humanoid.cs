@@ -15,6 +15,8 @@ public class Humanoid : MonoBehaviour
     [SerializeField]
     protected float health = 100;
 
+    protected bool isMoving;
+
     [SerializeField]
     protected float moveSpeed = 1;
 
@@ -35,9 +37,19 @@ public class Humanoid : MonoBehaviour
         //Move the character
         Controller.Move((Vector3.MoveTowards(Vector3.zero, moveDirection, 1) * moveSpeed + (characterCanFloat ? Vector3.zero : Physics.gravity)) * Time.deltaTime);
 
+        //Animator Boolean
+        if (moveDirection.x != 0f || moveDirection.z != 0f)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
 
         //CharacterModel move rotation
         if (moveDirection.sqrMagnitude > 0)
             CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
+
     }
 }

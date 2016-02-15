@@ -9,16 +9,14 @@ public class CameraScript : MonoBehaviour
     public GameObject target = null;
 
     public float speed;
-    // Use this for initialization
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target.transform);
+        Camera.main.transform.LookAt(target.transform);
 
         if (Input.GetKey("z"))
         {
@@ -31,12 +29,4 @@ public class CameraScript : MonoBehaviour
 
 
     }
-
-
-
-
-    /* void Update()
-     {
-
-   */
 }

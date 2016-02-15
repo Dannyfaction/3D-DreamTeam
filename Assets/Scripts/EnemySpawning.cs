@@ -10,10 +10,9 @@ public class EnemySpawning : MonoBehaviour {
     [SerializeField] private float spawnDelay;
 
 	void Start () {
-
         spawnPoints = new List<GameObject>();
         enemiesToSpawn = new List<GameObject>();
-        enemiesToSpawn.Add(Resources.Load<GameObject>("EnemyPlaceholder"));
+        enemiesToSpawn.Add(Resources.Load<GameObject>("EnemyGreyboxed"));
         for (int i = 0; i < transform.childCount; i++)
         {
             spawnPoints.Add(transform.Find("Spawnpoint"+i).gameObject);
