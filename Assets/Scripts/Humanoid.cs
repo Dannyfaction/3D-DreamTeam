@@ -38,6 +38,6 @@ public class Humanoid : MonoBehaviour
 
         //CharacterModel move rotation
         if (moveDirection.sqrMagnitude > 0)
-            CharacterModel.transform.LookAt(transform.position + moveDirection);
+            CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
     }
 }
