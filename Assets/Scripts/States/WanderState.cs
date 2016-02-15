@@ -5,27 +5,33 @@ using System.Collections.Generic;
 public class WanderState : State {
 	
 	public int sightDistance;
-	
+    private Enemy enemyScript;
 	public Collider[] enemyRange;
 	public float patrolSpeed;
     private List<GameObject> waypoints;
-	private int waypointInd;
+	private int waypointInd = 0;
 
     void Start()
     {
-        waypoints = new List<GameObject>();
-        waypoints.Add(GameObject.Find("Waypoint1"));
-        waypoints.Add(GameObject.Find("Waypoint2"));
+        enemyScript = GetComponent<Enemy>();
+
+        //Gets which Waypoints the Enemy was assigned to
+        waypoints = enemyScript.waypointGetter();
     }
 
+    //This is called every frame
 	public override void Act(){
+        //If the Enemy is away from the Waypoint
 		if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
 		{
-			agent.SetDestination(waypoints[waypointInd].transform.position);
+            //Sets the next destination (Waypoint)
+			NavMeshAgentDestinationSetter(waypoints[waypointInd].transform.position);
 		}
 		
+        //If the Enemy reached the Waypoint
 		else if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
 		{
+            //Assign a Random next Waypoint
 			waypointInd = Random.Range(0, waypoints.Count);
 		}
 	}
@@ -34,6 +40,7 @@ public class WanderState : State {
 	{
 		float distanceToPlayer = Vector3.Distance(targetGetter().transform.position, transform.position);
 		if(distanceToPlayer <  sightDistance)
+            //This makes the Enemy chase the Player once it is in a certain range
 			GetComponent<StateMachine>().SetState( StateID.Chase);
 	}
 }

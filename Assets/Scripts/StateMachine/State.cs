@@ -3,14 +3,29 @@ using System.Collections;
 
 public abstract class State : MonoBehaviour {
 
-	public NavMeshAgent agent;
-	private GameObject target;
+    //This is in the Unity Inspector for setting the NavMeshAgent
+	[SerializeField] private NavMeshAgent agent;
 
+    //The target for the Enemies (The Player in this case)
+	private GameObject target;
     public GameObject targetGetter()
     {
         target = GameObject.Find("Player");
         return target;
     }
+
+    //Setting the Speed in the NavMeshAgent
+    public void NavMeshAgentSpeedSetter(float input)
+    {
+        agent.speed = input;
+    }
+
+    //Sets the Distance for the NavMeshAgent
+    public void NavMeshAgentDestinationSetter(Vector3 input)
+    {
+        agent.destination = input;
+    }
+
 
 	public virtual void Enter ()
 	{

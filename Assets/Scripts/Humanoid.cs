@@ -5,24 +5,22 @@ using System.Collections.Generic;
 public class Humanoid : MonoBehaviour
 {
     protected CharacterController Controller;
-    [SerializeField] //The Character's Model, (not collision or holder)
-    GameObject CharacterModel;
 
-    [SerializeField]
-    protected List<WeaponScript> weaponList = new List<WeaponScript>();
+    //The Character's Model, (not collision or holder)
+    [SerializeField] GameObject CharacterModel;
+
+    [SerializeField] protected List<WeaponScript> weaponList = new List<WeaponScript>();
     protected int selectedWeapon = 0;
 
-    [SerializeField]
-    protected float health = 100;
-
+    //The health of the Humanoid
+    [SerializeField] protected float health = 100;
     protected bool isMoving;
 
-    [SerializeField]
-    protected float moveSpeed = 1;
+    //The movement speed of the Humanoid
+    [SerializeField] protected float moveSpeed = 1;
 
-    [SerializeField]
-    protected bool characterCanFloat = false;
-
+    //Boolean for making the Humanoid float
+    [SerializeField] protected bool characterCanFloat = false;
 
     protected void useTool()
     {

@@ -7,27 +7,36 @@ public class PlayerScript : Humanoid {
     Animator characterAnimator;
     private GameObject cameraObject;
     private GameObject healthObject;
-    
+
+    ControllerScript Joystick;
+
+    private float Move_X;
+    private float Move_y;
+
 
     void Start()
     {
+        Joystick = GetComponent<ControllerScript>();
         healthObject = GameObject.Find("Health");
         Controller = transform.GetComponent<CharacterController>();
         characterAnimator = GetComponentInChildren<Animator>();
         cameraObject = GameObject.Find("Camera Object");
     }
 
-
-	
-	// Update is called once per frame
 	void Update()
     {
-        if (Input.GetKeyDown("space"))
-            health -= 10;
         healthObject.transform.localScale = new Vector3((health/100),1,1);
 
+        //From the Inputmanager
+        Move_X = Joystick.LeftStick_X * moveSpeed;
+        Move_y = Joystick.LeftStick_Y * moveSpeed;
+
         //Move Input detection
-	    moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
+        //For Controller Use
+        moveDelta = new Vector3(Move_X, 0, -Move_y);
+
+        //For Keyboard Use
+        //moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
 
         //Velocity change
         move(cameraObject.transform.right * moveDelta.x + cameraObject.transform.forward * moveDelta.z);
