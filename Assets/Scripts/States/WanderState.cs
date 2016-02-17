@@ -16,24 +16,25 @@ public class WanderState : State {
         enemyScript = GetComponent<Enemy>();
 
         //Gets which Waypoints the Enemy was assigned to
+        waypoints = new List<GameObject>();
         waypoints = enemyScript.waypointGetter();
     }
 
     //This is called every frame
 	public override void Act(){
         //If the Enemy is away from the Waypoint
-		if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
-		{
+        if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
+        {
             //Sets the next destination (Waypoint)
-			NavMeshAgentDestinationSetter(waypoints[waypointInd].transform.position);
-		}
-		
+            NavMeshAgentDestinationSetter(waypoints[waypointInd].transform.position);
+        }
+
         //If the Enemy reached the Waypoint
-		else if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
-		{
+        else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
+        {
             //Assign a Random next Waypoint
-			waypointInd = Random.Range(0, waypoints.Count);
-		}
+            waypointInd = Random.Range(0, waypoints.Count);
+        }
 	}
 
 	public override void Reason()	

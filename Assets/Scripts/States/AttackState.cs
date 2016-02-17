@@ -9,6 +9,7 @@ public class AttackState : State {
 	{
 		Debug.Log("Attacking");
 
+        useTool();
 		/*	
 		 * 	Dealing damgage value 5-10?
 		 * 	Health system van de player koppellen aan AttackState

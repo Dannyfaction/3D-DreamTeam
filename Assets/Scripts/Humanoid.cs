@@ -22,6 +22,18 @@ public class Humanoid : MonoBehaviour
     //Boolean for making the Humanoid float
     [SerializeField] protected bool characterCanFloat = false;
 
+    public float Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            if (health <= 0)
+                Destroy(this.gameObject);
+        }
+    }
+
+
     protected void useTool()
     {
         if (weaponList.Count > 0)
