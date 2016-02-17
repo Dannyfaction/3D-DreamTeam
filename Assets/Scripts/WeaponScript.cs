@@ -8,29 +8,40 @@ public class WeaponScript : MonoBehaviour {
     float attackCooldown = 0;
 
     float attackDamage;
-    bool attacking = false;
-    Animator animator;
+
+    [SerializeField]
+    int maxCombo = 3;
+    [SerializeField]
+    float comboTime = 0.5f;
+    int currentCombo;
+    public int Combo
+    {
+        get { return currentCombo; }
+        set { currentCombo = value % (maxCombo + 1); }
+    }
     
+    Animator animator;
 
     void Start()
     {
-        animator = transform.GetComponent<Animator>();
+        animator = transform.GetComponentInParent<Animator>();
+        attackCooldown = -comboTime;
     }
 
     public void attack()
     {
-        if (attackCooldown <= 0)
+        if (attackCooldown <= 0 || animator.GetInteger("AttackState") == 0)
         {
-            animator.SetBool("Attacking", true);
             attackCooldown = maxAttackCooldown;
+            animator.SetInteger("AttackState", Combo++);
         }
     }
 
 	void Update()
 	{
         
-        if (attackCooldown <= 0 && animator.GetBool("Attacking"))
-            animator.SetBool("Attacking", false);
+        if (attackCooldown + comboTime <= 0 && animator.GetInteger("AttackState") > 0)
+            animator.SetInteger("AttackState", Combo = 0);
 
         attackCooldown -= Time.deltaTime;
 	}
