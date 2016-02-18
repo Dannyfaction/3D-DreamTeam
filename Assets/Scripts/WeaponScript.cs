@@ -11,7 +11,7 @@ public class WeaponScript : MonoBehaviour {
     float attackCooldown = 0;
 
     [SerializeField]
-    float attackDamage = 100;
+    float attackDamage = 20;
 
     [SerializeField]
     int maxCombo = 3;
@@ -21,7 +21,7 @@ public class WeaponScript : MonoBehaviour {
     public int Combo
     {
         get { return currentCombo; }
-        set { currentCombo = value % (maxCombo + 1); }
+        set { currentCombo = value % (maxCombo); }
     }
     
     [SerializeField]
@@ -38,7 +38,8 @@ public class WeaponScript : MonoBehaviour {
         if (attackCooldown <= 0 || animator.GetInteger("AttackState") == 0)
         {
             attackCooldown = maxAttackCooldown;
-            animator.SetInteger("AttackState", Combo++);
+            Combo++;
+            animator.SetInteger("AttackState", Combo);
         }
     }
 
@@ -60,11 +61,12 @@ public class WeaponScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider Col)
     {
-        //Debug.Log(Col.name);
+        Debug.Log(Col.name);
 
         Humanoid hum = Col.GetComponent<Humanoid>();
 
         if (hum && !Col.CompareTag(transform.tag))
             hum.Health -= attackDamage;
+        Debug.Log(Col.name);
     }
 }

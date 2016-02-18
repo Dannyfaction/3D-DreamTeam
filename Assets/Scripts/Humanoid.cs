@@ -33,11 +33,32 @@ public class Humanoid : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if (transform.tag == "Finish")
+        {
+            CharacterModel = gameObject;
+            //WeaponScript weaponScript = GetComponentInChildren<WeaponScript>();
+            Invoke("ScriptSetter", 0.5f);
+        }
+    }
+
+    void ScriptSetter()
+    {
+        //WeaponScript weaponScript = transform.Find("Weapon").GetComponent<WeaponScript>();
+        //weaponList.Add(weaponScript);
+    }
+
 
     protected void useTool()
     {
         if (weaponList.Count > 0)
             weaponList[selectedWeapon % weaponList.Count].attack();
+    }
+
+    public void WeaponListSetter(WeaponScript input)
+    {
+        //weaponList.Add(input);
     }
 
 
