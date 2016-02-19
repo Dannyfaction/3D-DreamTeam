@@ -10,21 +10,23 @@ public class CameraScript : MonoBehaviour
     public GameObject target = null;
 
     public float speed;
-    //float that makes sure wich way it goes
     public float look;
-    // Use this for initialization
     void Start()
     {
         Joystick = GameObject.Find("Player").GetComponent<ControllerScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target.transform);
+        //Focuses the Camera on the Player
+        Camera.main.transform.LookAt(target.transform);
 
+        //From the Inputmanager
         look = Joystick.RightStick_X;
 
+        //For turning the Camera around
+        //For Controller use
+        /*
         if (look == 1)
         {
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
@@ -33,15 +35,16 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
+        */ 
 
-
+        //For Keyboard use
+        if (Input.GetKey("z"))
+        {
+            transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
+        }
+        if (Input.GetKey("x"))
+        {
+            transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
+        }
     }
-
-
-
-
-    /* void Update()
-     {
-
-   */
 }

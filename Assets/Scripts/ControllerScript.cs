@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ControllerScript : MonoBehaviour {
+public class ControllerScript : MonoBehaviour
+{
 
     PlayerScript player;
 
@@ -13,12 +14,13 @@ public class ControllerScript : MonoBehaviour {
     private float leftTrigger;
     private float A;
 
-    // Use this for initialization
-	void Start () {
+    void Start()
+    {
         player = GetComponent<PlayerScript>();
-	}
+    }
 
-    
+
+    //Getters and Setters for the Controller to use in other scripts
     public float LeftStick_Y
     {
         get { return leftStick_Y; }
@@ -54,19 +56,21 @@ public class ControllerScript : MonoBehaviour {
         get { return leftTrigger; }
         set { leftTrigger = value; }
     }
-	
-	// Update is called once per frame
-	void Update () {
 
+    void Update()
+    {
+        //Gets LeftJoyStickX and LeftJoystickY from the Unity Inputmanager
         leftStick_X = Input.GetAxis("LeftJoystickX");
         leftStick_Y = Input.GetAxis("LeftJoystickY");
 
+        //Gets RightJoystickX and RightJoystickY from the Unity Inputmanager
         rightStick_X = Input.GetAxis("RightJoystickX");
         rightStick_Y = Input.GetAxis("RightJoystickY");
 
         //rightTrigger = Input.GetAxis("RightTrigger");
         //leftTrigger = Input.GetAxis("LeftTrigger");
 
+        //Gets A from the Unity Inputmanager (A is the green button on the Xbox Controller)
         A = Input.GetAxis("A");
-	}
+    }
 }
