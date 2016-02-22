@@ -10,8 +10,17 @@ public class WeaponScript : MonoBehaviour {
     float maxAttackCooldown = 4;
     float attackCooldown = 0;
 
+    private bool isAttacking;
+    public bool isAttackingGetSet
+    {
+        get { return isAttacking; }
+        set { isAttacking = value; }
+    }
+
     [SerializeField]
     float attackDamage = 20;
+
+    GameObject swordTrail;
 
     [SerializeField]
     int maxCombo = 3;
@@ -31,6 +40,10 @@ public class WeaponScript : MonoBehaviour {
     {
         animator = transform.GetComponentInParent<Animator>();
         attackCooldown = -comboTime;
+        if (transform.tag == "Player")
+        {
+            swordTrail = transform.Find("Trailrenderer_Sword").gameObject;
+        }
     }
 
     public void attack()
@@ -39,13 +52,17 @@ public class WeaponScript : MonoBehaviour {
         {
             attackCooldown = maxAttackCooldown;
             Combo++;
+            isAttacking = true;
             animator.SetInteger("AttackState", Combo);
+            if (transform.tag == "Player")
+            {
+                swordTrail.SetActive(true);
+            }
         }
     }
 
 	void Update()
 	{
-
         if (attackCooldown + comboTime <= 0 && animator.GetInteger("AttackState") > 0)
         {
             animator.SetInteger("AttackState", Combo = 0);
@@ -53,8 +70,15 @@ public class WeaponScript : MonoBehaviour {
         if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
             Hitbox.SetActive(true);
         else if (attackCooldown + comboTime <= 0 && Hitbox.activeSelf)
+        {
             Hitbox.SetActive(false);
-
+            if (transform.tag == "Player")
+            {
+                isAttacking = false;
+                swordTrail.SetActive(false);
+            }
+            
+        }
 
         attackCooldown -= Time.deltaTime;
 	}

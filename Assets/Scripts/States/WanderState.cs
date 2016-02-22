@@ -26,6 +26,8 @@ public class WanderState : State {
     //This is called every frame
 	public override void Act(){
         //If the Enemy is away from the Waypoint
+        //isMoving = true;
+        Debug.Log("Ja");
         if (waypoints.Count > 0)
         {
             if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
