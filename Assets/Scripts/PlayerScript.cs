@@ -7,6 +7,7 @@ public class PlayerScript : Humanoid {
     Animator characterAnimator;
     private GameObject cameraObject;
     private GameObject healthObject;
+    private WeaponScript weaponScript;
 
     ControllerScript Joystick;
 
@@ -16,6 +17,8 @@ public class PlayerScript : Humanoid {
 
     void Start()
     {
+        //weaponScript = transform.Find("Weapon").GetComponent<WeaponScript>();
+        weaponScript = GetComponentInChildren<WeaponScript>();
         Joystick = GetComponent<ControllerScript>();
         healthObject = GameObject.Find("Health");
         Controller = transform.GetComponent<CharacterController>();
@@ -36,7 +39,11 @@ public class PlayerScript : Humanoid {
         //moveDelta = new Vector3(Move_X, 0, -Move_y);
 
         //For Keyboard Use
-        moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
+        if (!weaponScript.isAttackingGetSet)
+        {
+            moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
+        }
+        
 
         //Velocity change
         move(cameraObject.transform.right * moveDelta.x + cameraObject.transform.forward * moveDelta.z);
@@ -49,6 +56,7 @@ public class PlayerScript : Humanoid {
         }
         else
         {
+            moveDelta = new Vector3(0,0,0);
             characterAnimator.SetBool("isWalking", false);
         }
 

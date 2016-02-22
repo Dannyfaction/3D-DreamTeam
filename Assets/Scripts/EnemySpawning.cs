@@ -14,7 +14,7 @@ public class EnemySpawning : MonoBehaviour {
         enemiesToSpawn = new List<GameObject>();
 
         //The Enemy Prefab in the Resources folder
-        enemiesToSpawn.Add(Resources.Load<GameObject>("EnemyGreyboxed"));
+        enemiesToSpawn.Add(Resources.Load<GameObject>("Enemy"));
 
         for (int i = 0; i < transform.childCount; i++)
         {

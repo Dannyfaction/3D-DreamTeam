@@ -69,13 +69,16 @@ public class Humanoid : MonoBehaviour
         Controller.Move((Vector3.MoveTowards(Vector3.zero, moveDirection, 1) * moveSpeed + (characterCanFloat ? Vector3.zero : Physics.gravity)) * Time.deltaTime);
 
         //Animator Boolean
-        if (moveDirection.x != 0f || moveDirection.z != 0f)
+        if (transform.tag == "Player")
         {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
+            if (moveDirection.x != 0f || moveDirection.z != 0f)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
         }
 
         //CharacterModel move rotation
