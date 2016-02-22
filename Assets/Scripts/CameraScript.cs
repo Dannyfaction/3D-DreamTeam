@@ -26,6 +26,7 @@ public class CameraScript : MonoBehaviour
 
         //For turning the Camera around
         //For Controller use
+        /*
         if (look == 1)
         {
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
@@ -34,9 +35,10 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
+        */
 
         //For Keyboard use
-        /*
+        
         if (Input.GetKey("z"))
         {
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
@@ -45,7 +47,6 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
-        */
 
 
     }

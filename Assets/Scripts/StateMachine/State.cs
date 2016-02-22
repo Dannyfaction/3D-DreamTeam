@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class State : MonoBehaviour {
+public abstract class State : Humanoid {
 
     //This is in the Unity Inspector for setting the NavMeshAgent
 	[SerializeField] private NavMeshAgent agent;

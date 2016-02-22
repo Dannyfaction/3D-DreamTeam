@@ -8,32 +8,40 @@ public class WanderState : State {
     private Enemy enemyScript;
 	public Collider[] enemyRange;
 	public float patrolSpeed;
-    private List<GameObject> waypoints;
+    private List<GameObject> waypoints = new List<GameObject>();
 	private int waypointInd = 0;
 
     void Start()
     {
         enemyScript = GetComponent<Enemy>();
 
+        WeaponScript weaponScript = GetComponent<WeaponScript>();
+        WeaponListSetter(weaponScript);
+
         //Gets which Waypoints the Enemy was assigned to
+        //waypoints = new List<GameObject>();
         waypoints = enemyScript.waypointGetter();
     }
 
     //This is called every frame
 	public override void Act(){
         //If the Enemy is away from the Waypoint
-		if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
-		{
-            //Sets the next destination (Waypoint)
-			NavMeshAgentDestinationSetter(waypoints[waypointInd].transform.position);
-		}
-		
-        //If the Enemy reached the Waypoint
-		else if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
-		{
-            //Assign a Random next Waypoint
-			waypointInd = Random.Range(0, waypoints.Count);
-		}
+        if (waypoints.Count > 0)
+        {
+            if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
+            {
+                //Sets the next destination (Waypoint)
+                NavMeshAgentDestinationSetter(waypoints[waypointInd].transform.position);
+            }
+
+            //If the Enemy reached the Waypoint
+            else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
+            {
+                //Assign a Random next Waypoint
+                waypointInd = Random.Range(0, waypoints.Count);
+            }
+        }
+        
 	}
 
 	public override void Reason()	
