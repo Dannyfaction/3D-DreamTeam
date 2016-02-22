@@ -7,19 +7,28 @@ public class WorldEventCollision : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        worldEvents = GameObject.Find("EventSystem").GetComponent<WorldEventScript>();
+        worldEvents = GameObject.Find("WorldEventSystem").GetComponent<WorldEventScript>();
 	}
 	
 	// Update is called once per frame
 	void Update () {            
 	}
 
-    void onCollisionEnter(Collision coll)
+    void OnTriggerEnter(Collider other)
     {
-        if(coll.transform.name == "Event_1")
+        if(other.gameObject.name == "Event_1")
         {
-            Debug.Log("hello");
             worldEvents.Event1();
+        }
+
+        if (other.gameObject.name == "Event_2")
+        {
+            worldEvents.Event2();
+        }
+
+        if (other.gameObject.name == "Event_3")
+        {
+            worldEvents.Event3();
         }
 
     }

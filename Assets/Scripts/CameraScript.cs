@@ -11,6 +11,10 @@ public class CameraScript : MonoBehaviour
 
     public float speed;
     public float look;
+
+    private float deathSpeed;
+    private float timer;
+    
     void Start()
     {
         Joystick = GameObject.Find("Player").GetComponent<ControllerScript>();
@@ -26,7 +30,6 @@ public class CameraScript : MonoBehaviour
 
         //For turning the Camera around
         //For Controller use
-        /*
         if (look == 1)
         {
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
@@ -35,7 +38,6 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
-        */ 
 
         //For Keyboard use
         if (Input.GetKey("z"))
@@ -45,6 +47,17 @@ public class CameraScript : MonoBehaviour
         if (Input.GetKey("x"))
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
+        }
+    }
+
+    //camera movement for gameover
+    public void DeathCamera() {
+        timer = 10;
+        while(timer < 10)
+        {
+            Camera.main.transform.LookAt(target.transform);
+            transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
+            timer++;
         }
     }
 }
