@@ -30,6 +30,11 @@ public class Enemy : MonoBehaviour {
         whichSpawnpoint = input;
     }
 
+    void Update()
+    {
+        //transform.rotation = Quaternion.Euler(0, 180f, 0);
+    }
+
 	private StateMachine stateMachine;
 	void Start () {
         stateMachine = GetComponent<StateMachine>();
