@@ -83,4 +83,19 @@ public class Humanoid : MonoBehaviour
             CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
 
     }
+	/*
+	public float Health {
+		get {
+			return health;
+		}
+
+		set {
+			health = value;
+
+			if (health <= 0) {
+				GameObject.Destroy (this.gameObject);
+			}
+		}
+	}
+	*/
 }
