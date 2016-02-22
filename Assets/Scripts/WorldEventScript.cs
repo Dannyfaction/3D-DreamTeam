@@ -3,9 +3,13 @@ using System.Collections;
 
 public class WorldEventScript : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject cameraObject;
+
+    CameraScript camera;
 	// Use this for initialization
 	void Start () {
-	    
+        camera = cameraObject.GetComponent<CameraScript>();
 	}
 	
 	// Update is called once per frame
@@ -16,7 +20,7 @@ public class WorldEventScript : MonoBehaviour {
     public void Event1()
     {
         Debug.Log("play 1");
-
+        camera.DeathCamera();
         Destroy(GameObject.Find("Event_1"));
     }
 

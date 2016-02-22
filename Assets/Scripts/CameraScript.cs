@@ -12,8 +12,8 @@ public class CameraScript : MonoBehaviour
     public float speed;
     public float look;
 
+    private bool dead = true;
     private float deathSpeed;
-    private float timer;
     
     void Start()
     {
@@ -51,13 +51,17 @@ public class CameraScript : MonoBehaviour
     }
 
     //camera movement for gameover
-    public void DeathCamera() {
-        timer = 10;
-        while(timer < 10)
+    public void DeathCamera()
+    {
+        deathSpeed = 5;
+
+        /*
+        while(dead)
         {
             Camera.main.transform.LookAt(target.transform);
-            transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
-            timer++;
+            transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * deathSpeed);
+            Debug.Log("deathtime");
         }
+        */
     }
 }
