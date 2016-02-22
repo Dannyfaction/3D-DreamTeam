@@ -83,6 +83,7 @@ public class Humanoid : MonoBehaviour
             CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
 
     }
+	/*
 	public float Health {
 		get {
 			return health;
@@ -96,4 +97,5 @@ public class Humanoid : MonoBehaviour
 			}
 		}
 	}
+	*/
 }
