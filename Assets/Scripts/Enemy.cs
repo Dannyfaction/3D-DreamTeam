@@ -10,10 +10,11 @@ public enum StateID
 	Attack = 3
 }
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Humanoid {
     
     //Which spawnpoints 
     private List<GameObject> waypoints;
+    private Animator characterAnimator;
     public List<GameObject> waypointGetter()
     {
         return waypoints;
@@ -32,13 +33,27 @@ public class Enemy : MonoBehaviour {
 
     void Update()
     {
-        //transform.rotation = Quaternion.Euler(0, 180f, 0);
+        //This is for playing the Enemy Animations
+        if (isMoving)
+        {
+            characterAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            characterAnimator.SetBool("isWalking", false);
+        }
+        if (isDead)
+        {
+            characterAnimator.SetBool("isDead", true);
+        }
     }
 
 	private StateMachine stateMachine;
 	void Start () {
+        characterAnimator = GetComponentInChildren<Animator>();
         stateMachine = GetComponent<StateMachine>();
         waypoints = new List<GameObject>();
+
         //Which speccific waypoints the enemies on specific spawn points have to wander around
         switch (whichSpawnpoint)
         {

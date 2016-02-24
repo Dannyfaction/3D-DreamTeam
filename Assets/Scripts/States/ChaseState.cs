@@ -12,7 +12,6 @@ public class ChaseState : State {
     void Start()
     {
         WeaponScript weaponScript = GetComponent<WeaponScript>();
-        WeaponListSetter(weaponScript);
     }
 
     public override void Act(){

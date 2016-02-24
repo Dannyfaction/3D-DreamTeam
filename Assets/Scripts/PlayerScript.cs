@@ -28,7 +28,10 @@ public class PlayerScript : Humanoid {
 
 	void Update()
     {
-        healthObject.transform.localScale = new Vector3((health/100),1,1);
+        if (healthObject.transform.localScale.x > 0)
+        {
+            healthObject.transform.localScale = new Vector3((health / 100), 1, 1);
+        }
 
         //From the Inputmanager
         Move_X = Joystick.LeftStick_X * moveSpeed;
@@ -36,17 +39,17 @@ public class PlayerScript : Humanoid {
 
         //Move Input detection
         //For Controller Use
-        //moveDelta = new Vector3(Move_X, 0, -Move_y);
+        moveDelta = new Vector3(Move_X, 0, -Move_y);
 
         //For Keyboard Use
         if (!weaponScript.isAttackingGetSet)
         {
             moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
         }
-        
 
         //Velocity change
-        move(cameraObject.transform.right * moveDelta.x + cameraObject.transform.forward * moveDelta.z);
+        if (characterAnimator.GetInteger("AttackState") == 0)
+            move(cameraObject.transform.right * moveDelta.x + cameraObject.transform.forward * moveDelta.z);
 
 
         //Animator Boolean
@@ -56,15 +59,13 @@ public class PlayerScript : Humanoid {
         }
         else
         {
-            moveDelta = new Vector3(0,0,0);
+            //moveDelta = new Vector3(0,0,0);
             characterAnimator.SetBool("isWalking", false);
         }
 
         //Action Input detection
         if (Input.GetButtonDown("Fire1")) //[NOTE] if statement Will be replaced by a keybinding class when it's availible
         {
-            Debug.Log("Firing");
-
             useTool();
         }
     }
