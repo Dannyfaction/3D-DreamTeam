@@ -7,7 +7,7 @@ public class ChaseState : State {
 	private float chaseSpeed = 10;
 
     //Attack Range
-	private float GivenDistanceToTarget = 2;
+	private float GivenDistanceToTarget = 5;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class ChaseState : State {
 	
 	public override void Reason(){
         //Total Distance from Player to Enemy
-		float distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
+		float distanceToTarget = Vector3.Distance(targetGetter().transform.position,transform.position);
 
         //If the Target is within Attack Range
 		if(distanceToTarget < GivenDistanceToTarget)

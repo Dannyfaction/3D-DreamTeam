@@ -21,6 +21,8 @@ public class AttackState : State {
 		 * 	Proto bevat: Attack, Chase en wander; uiteindelijk: Flee..
 		 * 	De hoop word minder met de dag dat ik wacht..
 		 */
+
+
 	}
 
 	public override void Reason(){
