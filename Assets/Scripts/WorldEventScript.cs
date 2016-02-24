@@ -3,19 +3,19 @@ using System.Collections;
 
 public class WorldEventScript : MonoBehaviour {
 
-    public GameObject playerCam;
     public GameObject event_1_Cam;
 
+    //main camera
     [SerializeField]
-    private GameObject cameraObject;
+    private GameObject playerCam;
 
     CameraEventScript cameraEvents;
 
     CameraScript camera;
 	// Use this for initialization
 	void Start () {
-        camera = cameraObject.GetComponent<CameraScript>();
-        cameraEvents = GameObject.Find("CameraEvent").GetComponent<CameraEventScript>();
+        camera = playerCam.GetComponent<CameraScript>();
+        cameraEvents = event_1_Cam.GetComponent<CameraEventScript>();
 	}
 	
 	// Update is called once per frame

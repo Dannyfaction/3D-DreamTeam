@@ -4,9 +4,16 @@ using System.Collections;
 
 public class CameraEventScript : MonoBehaviour {
 
+    public GameObject event_1_Cam;
+
+    //main camera
+    [SerializeField]
+    private GameObject playerCam;
+
+
     private bool intersectionEvent = false;
 
-    private float up = 0.01f;
+    private float up = 0.2f;
 	// Use this for initialization
 	void Start () {
 	
@@ -18,16 +25,20 @@ public class CameraEventScript : MonoBehaviour {
 
 
         if (intersectionEvent) {
-
             int i = 0;
-            if (i < 5 & this.transform.position.y < 40)
+            if (i < 6 & transform.position.y < 40)
             {
-                Time.timeScale = 0;
-                transform.Translate(0, up, 0);
+                Debug.Log("doet ie het?");
+                transform.Translate(0, up, 3);
                 i++;
+                Time.timeScale = 0;
             }
-            else
-            {
+            else {
+                intersectionEvent = false;
+
+                playerCam.gameObject.SetActive(true);
+                event_1_Cam.gameObject.SetActive(false);
+
                 Time.timeScale = 1;
             }
         }
@@ -36,6 +47,6 @@ public class CameraEventScript : MonoBehaviour {
     //For 360 rotation when ariving at the intersection
     public void IntersectionEvent() {
         intersectionEvent = true;
-        Debug.Log("go rotate");
+        Debug.Log(intersectionEvent);
     }
 }
