@@ -14,20 +14,22 @@ public class WanderState : State {
     void Start()
     {
         enemyScript = GetComponent<Enemy>();
-
         WeaponScript weaponScript = GetComponent<WeaponScript>();
-        WeaponListSetter(weaponScript);
+
 
         //Gets which Waypoints the Enemy was assigned to
-        //waypoints = new List<GameObject>();
         waypoints = enemyScript.waypointGetter();
     }
 
     //This is called every frame
 	public override void Act(){
         //If the Enemy is away from the Waypoint
-        //isMoving = true;
-        Debug.Log("Ja");
+        if (enemyScript)
+        {
+            enemyScript.IsMoving = true;
+        }
+
+        //If there are waypoints set up
         if (waypoints.Count > 0)
         {
             if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)

@@ -5,15 +5,16 @@ public class AttackState : State {
 
 	public int sightDistance;
 
+<<<<<<< HEAD
    void Start()
     {
        
     }
 
+=======
+>>>>>>> master
 	public override void Act()
 	{
-		Debug.Log("Attacking");
-
         useTool();
 		/*	
 		 * 	Dealing damgage value 5-10?
@@ -24,7 +25,11 @@ public class AttackState : State {
 
 
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> master
 	public override void Reason(){
 		float distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
 		if(distanceToTarget > sightDistance)

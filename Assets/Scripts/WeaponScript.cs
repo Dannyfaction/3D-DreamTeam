@@ -4,7 +4,7 @@ using System.Collections;
 public class WeaponScript : MonoBehaviour {
 
     [SerializeField]
-    GameObject Hitbox;
+    private GameObject Hitbox;
 
     [SerializeField]
     float maxAttackCooldown = 4;
@@ -20,7 +20,7 @@ public class WeaponScript : MonoBehaviour {
     [SerializeField]
     float attackDamage = 20;
 
-    GameObject swordTrail;
+    private GameObject swordTrail;
 
     [SerializeField]
     int maxCombo = 3;
@@ -34,7 +34,7 @@ public class WeaponScript : MonoBehaviour {
     }
     
     [SerializeField]
-    Animator animator;
+    private Animator animator;
 
     void Start()
     {
@@ -90,7 +90,15 @@ public class WeaponScript : MonoBehaviour {
         Humanoid hum = Col.GetComponent<Humanoid>();
 
         if (hum && !Col.CompareTag(transform.tag))
+        {
+            Debug.Log("Health Omlaag");
             hum.Health -= attackDamage;
-        Debug.Log(Col.name);
+        }
+        else if(!hum && !Col.CompareTag(transform.tag))
+        {
+            hum = Col.GetComponentInParent<Humanoid>();
+            hum.Health -= attackDamage;
+        }
+        //Debug.Log(Col.name);
     }
 }
