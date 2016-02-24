@@ -14,7 +14,7 @@ public class EnemySpawning : MonoBehaviour {
         enemiesToSpawn = new List<GameObject>();
 
         //The Enemy Prefab in the Resources folder
-        enemiesToSpawn.Add(Resources.Load<GameObject>("EnemyGreyboxed"));
+        enemiesToSpawn.Add(Resources.Load<GameObject>("Enemy"));
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -33,7 +33,7 @@ public class EnemySpawning : MonoBehaviour {
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             //Spawns the Enemies and sends which Spawnpoint it spawned on to the Enemy script
-            GameObject spawnedEnemy = (GameObject)Instantiate(enemiesToSpawn[0], new Vector3(spawnPoints[i].transform.position.x, spawnPoints[i].transform.position.y+0.5f, spawnPoints[i].transform.position.z), Quaternion.identity);
+            GameObject spawnedEnemy = (GameObject)Instantiate(enemiesToSpawn[0], new Vector3(spawnPoints[i].transform.position.x, spawnPoints[i].transform.position.y+0.5f, spawnPoints[i].transform.position.z), Quaternion.Euler(0, 180f, 0));
             Enemy spawnedEnemyScript = spawnedEnemy.GetComponentInChildren<Enemy>();
             spawnedEnemyScript.whichSpawnpointSetter(i);
         }

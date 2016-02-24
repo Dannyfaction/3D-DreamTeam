@@ -1,0 +1,652 @@
+fileFormatVersion: 2
+guid: 1d22cb39858440c488569d22d0fb6dde
+timeCreated: 1455714618
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Chest
+    100004: Head
+    100006: L_L_arm
+    100008: L_L_Leg
+    100010: L_U_arm
+    100012: L_U_leg
+    100014: Middle
+    100016: Pelvis
+    100018: R_L_arm
+    100020: R_L_leg
+    100022: R_U_arm
+    100024: R_U_leg
+    100026: sword
+    400000: //RootNode
+    400002: Chest
+    400004: Head
+    400006: L_L_arm
+    400008: L_L_Leg
+    400010: L_U_arm
+    400012: L_U_leg
+    400014: Middle
+    400016: Pelvis
+    400018: R_L_arm
+    400020: R_L_leg
+    400022: R_U_arm
+    400024: R_U_leg
+    400026: sword
+    2300000: Chest
+    2300002: Head
+    2300004: L_L_arm
+    2300006: L_L_Leg
+    2300008: L_U_arm
+    2300010: L_U_leg
+    2300012: Middle
+    2300014: Pelvis
+    2300016: R_L_arm
+    2300018: R_L_leg
+    2300020: R_U_arm
+    2300022: R_U_leg
+    2300024: sword
+    3300000: Chest
+    3300002: Head
+    3300004: L_L_arm
+    3300006: L_L_Leg
+    3300008: L_U_arm
+    3300010: L_U_leg
+    3300012: Middle
+    3300014: Pelvis
+    3300016: R_L_arm
+    3300018: R_L_leg
+    3300020: R_U_arm
+    3300022: R_U_leg
+    3300024: sword
+    4300000: Pelvis
+    4300002: L_U_leg
+    4300004: L_L_Leg
+    4300006: R_U_leg
+    4300008: R_L_leg
+    4300010: Middle
+    4300012: Chest
+    4300014: R_U_arm
+    4300016: R_L_arm
+    4300018: sword
+    4300020: L_U_arm
+    4300022: L_L_arm
+    4300024: Head
+    7400000: Walk_ACTIVE_hero
+    7400002: Idle_hero
+    7400004: Walk_IN_hero
+    7400006: Walk_OUT_hero
+    7400008: Attack_1_hero
+    7400010: Attack_2_hero
+    7400012: Attack_3_hero
+    7400014: Dash_hero
+    7400016: Death_hero
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk_ACTIVE_hero
+      takeName: Take 001
+      firstFrame: 85
+      lastFrame: 113
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_hero
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Walk_IN_hero
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk_OUT_hero
+      takeName: Take 001
+      firstFrame: 113
+      lastFrame: 126
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack_1_hero
+      takeName: Take 001
+      firstFrame: 139
+      lastFrame: 163
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack_2_hero
+      takeName: Take 001
+      firstFrame: 163
+      lastFrame: 187
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack_3_hero
+      takeName: Take 001
+      firstFrame: 139
+      lastFrame: 163
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dash_hero
+      takeName: Take 001
+      firstFrame: 200
+      lastFrame: 206
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death_hero
+      takeName: Take 001
+      firstFrame: 209
+      lastFrame: 214
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/L_U_leg
+        weight: 1
+      - path: Pelvis/L_U_leg/L_L_Leg
+        weight: 1
+      - path: Pelvis/Middle
+        weight: 1
+      - path: Pelvis/Middle/Chest
+        weight: 1
+      - path: Pelvis/Middle/Chest/Head
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/L_U_arm/L_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm
+        weight: 1
+      - path: Pelvis/Middle/Chest/R_U_arm/R_L_arm/sword
+        weight: 1
+      - path: Pelvis/R_U_leg
+        weight: 1
+      - path: Pelvis/R_U_leg/R_L_leg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

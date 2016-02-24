@@ -9,7 +9,13 @@ public class ChaseState : State {
     //Attack Range
 	private float GivenDistanceToTarget = 2;
 
-	public override void Act(){
+    void Start()
+    {
+        WeaponScript weaponScript = GetComponent<WeaponScript>();
+        WeaponListSetter(weaponScript);
+    }
+
+    public override void Act(){
         //Setting the speed and Destination on the Agent Manager for the NavMash Pathfinding
         NavMeshAgentSpeedSetter(chaseSpeed);
         NavMeshAgentDestinationSetter(targetGetter().transform.position);

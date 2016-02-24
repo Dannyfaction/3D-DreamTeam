@@ -22,10 +22,43 @@ public class Humanoid : MonoBehaviour
     //Boolean for making the Humanoid float
     [SerializeField] protected bool characterCanFloat = false;
 
+    public float Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            if (health <= 0)
+                Destroy(this.gameObject);
+        }
+    }
+
+    void Start()
+    {
+        if (transform.tag == "Finish")
+        {
+            CharacterModel = gameObject;
+            //WeaponScript weaponScript = GetComponentInChildren<WeaponScript>();
+            Invoke("ScriptSetter", 0.5f);
+        }
+    }
+
+    void ScriptSetter()
+    {
+        //WeaponScript weaponScript = transform.Find("Weapon").GetComponent<WeaponScript>();
+        //weaponList.Add(weaponScript);
+    }
+
+
     protected void useTool()
     {
         if (weaponList.Count > 0)
             weaponList[selectedWeapon % weaponList.Count].attack();
+    }
+
+    public void WeaponListSetter(WeaponScript input)
+    {
+        //weaponList.Add(input);
     }
 
 
@@ -36,13 +69,16 @@ public class Humanoid : MonoBehaviour
         Controller.Move((Vector3.MoveTowards(Vector3.zero, moveDirection, 1) * moveSpeed + (characterCanFloat ? Vector3.zero : Physics.gravity)) * Time.deltaTime);
 
         //Animator Boolean
-        if (moveDirection.x != 0f || moveDirection.z != 0f)
+        if (transform.tag == "Player")
         {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
+            if (moveDirection.x != 0f || moveDirection.z != 0f)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
         }
 
         //CharacterModel move rotation

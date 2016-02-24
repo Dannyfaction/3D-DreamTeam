@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class State : MonoBehaviour {
+public abstract class State : Humanoid {
 
     //This is in the Unity Inspector for setting the NavMeshAgent
 	[SerializeField] private NavMeshAgent agent;
 
     //The target for the Enemies (The Player in this case)
 	private GameObject target;
+    private bool isWalking;
+
     public GameObject targetGetter()
     {
         target = GameObject.Find("Player");

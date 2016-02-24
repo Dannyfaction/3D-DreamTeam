@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     //Speed for deathCamera
     private float deathSpeed;
     private float panOut = 0.01f;
-    
+
     void Start()
     {
         //UpDown = new Vector3(0, 0, 1);
@@ -76,14 +76,14 @@ public class CameraScript : MonoBehaviour
         }
         if (Input.GetKey("v") & transform.position.y < 15)
         {
-            transform.Translate(0, upDown ,0);
+            transform.Translate(0, upDown, 0);
         }
 
 
         //Pans the camera around the (dead)Player
         if (dead)
-        {   
-            int i = 0; 
+        {
+            int i = 0;
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * deathSpeed);
             while (i < 3 & this.transform.position.y < 25)
             {
