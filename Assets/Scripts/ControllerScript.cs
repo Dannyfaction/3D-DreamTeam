@@ -13,6 +13,7 @@ public class ControllerScript : MonoBehaviour
     private float rightTrigger;
     private float leftTrigger;
     private float A;
+    private float start;
 
     void Start()
     {
@@ -63,9 +64,13 @@ public class ControllerScript : MonoBehaviour
         leftStick_X = Input.GetAxis("LeftJoystickX");
         leftStick_Y = Input.GetAxis("LeftJoystickY");
 
+        rightTrigger = Input.GetAxis("RightTrigger");
+        start = Input.GetAxis("Start");
+
         //Gets RightJoystickX and RightJoystickY from the Unity Inputmanager
         rightStick_X = Input.GetAxis("RightJoystickX");
         rightStick_Y = Input.GetAxis("RightJoystickY");
+
 
         //rightTrigger = Input.GetAxis("RightTrigger");
         //leftTrigger = Input.GetAxis("LeftTrigger");

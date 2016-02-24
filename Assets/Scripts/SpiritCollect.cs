@@ -22,7 +22,6 @@ public class SpiritCollect : MonoBehaviour {
         else
         {
             float distanceToTarget = Vector3.Distance(transform.position,new Vector3(player.transform.position.x, player.transform.position.y + 6.5f, player.transform.position.z));
-            Debug.Log(distanceToTarget);
             reachedTop = true;
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x,player.transform.position.y+6.5f,player.transform.position.z), step);

@@ -8,6 +8,7 @@ public class PlayerScript : Humanoid {
     private GameObject cameraObject;
     private GameObject healthObject;
     private WeaponScript weaponScript;
+    private GameObject pauseObject;
 
     ControllerScript Joystick;
 
@@ -21,6 +22,7 @@ public class PlayerScript : Humanoid {
         weaponScript = GetComponentInChildren<WeaponScript>();
         Joystick = GetComponent<ControllerScript>();
         healthObject = GameObject.Find("Health");
+        pauseObject = GameObject.Find("Canvas").transform.Find("Pause").gameObject;
         Controller = transform.GetComponent<CharacterController>();
         characterAnimator = GetComponentInChildren<Animator>();
         cameraObject = GameObject.Find("Camera Object");
@@ -39,10 +41,13 @@ public class PlayerScript : Humanoid {
 
         //Move Input detection
         //For Controller Use
-        moveDelta = new Vector3(Move_X, 0, -Move_y);
+        if (!weaponScript.isAttackingGetSet && Time.timeScale == 1)
+        {
+            moveDelta = new Vector3(Move_X, 0, -Move_y);
+        }
 
         //For Keyboard Use
-        if (!weaponScript.isAttackingGetSet)
+        if (!weaponScript.isAttackingGetSet && Time.timeScale == 1)
         {
             moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
         }
@@ -67,6 +72,19 @@ public class PlayerScript : Humanoid {
         if (Input.GetButtonDown("Fire1")) //[NOTE] if statement Will be replaced by a keybinding class when it's availible
         {
             useTool();
+        }
+
+
+        //Pause the game once start button on controller has been pressed
+        if (Input.GetButtonDown("Start") && Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            pauseObject.SetActive(true);
+        }
+        else if (Input.GetButtonDown("Start") && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pauseObject.SetActive(false);
         }
     }
 }
