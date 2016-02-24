@@ -7,7 +7,7 @@ public class AttackState : State {
 
    void Start()
     {
-        Invoke("addScripts", 0.5f);
+       
     }
 
 	public override void Act()
@@ -23,14 +23,6 @@ public class AttackState : State {
 		 */
 	}
 
-    private void addScripts()
-    {
-        WeaponScript weaponScript = GetComponentInChildren<WeaponScript>();
-        weaponList.Add(weaponScript);
-        Humanoid humanoid = GetComponent<Humanoid>();
-        //humanoid.WeaponListSetter(weaponScript);
-    }
-	
 	public override void Reason(){
 		float distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
 		if(distanceToTarget > sightDistance)
