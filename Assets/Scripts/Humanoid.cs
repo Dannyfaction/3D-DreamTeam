@@ -35,7 +35,7 @@ public class Humanoid : MonoBehaviour
         set
         {
             health = value;
-            if (health <= 0 && transform.tag == "Enemy")
+            if (health == 0 && transform.tag == "Enemy")
             {
                 isDead = true;
                 Invoke("PlayParticle",1f);
@@ -58,6 +58,7 @@ public class Humanoid : MonoBehaviour
 
     private void PlayParticle()
     {
+        Instantiate(Resources.Load<GameObject>("Spirit"), new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
         particleSystem = GetComponentInChildren<ParticleSystem>();
         particleSystem.Play();
     }
