@@ -9,14 +9,23 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     public GameObject target = null;
 
+    //Camera speed
     public float speed;
-    public float look;
+    private float look;
+    private float lookUp;
+    private float upDown;
 
-    private bool dead = true;
+
+    private bool dead = false;
+
+    //Speed for deathCamera
     private float deathSpeed;
+    private float panOut = 0.01f;
     
     void Start()
     {
+        //UpDown = new Vector3(0, 0, 1);
+        upDown = 0.2f;
         Joystick = GameObject.Find("Player").GetComponent<ControllerScript>();
     }
 
@@ -27,6 +36,7 @@ public class CameraScript : MonoBehaviour
 
         //From the Inputmanager
         look = Joystick.RightStick_X;
+        lookUp = Joystick.RightStick_Y;
 
         //For turning the Camera around
         //For Controller use
@@ -39,6 +49,18 @@ public class CameraScript : MonoBehaviour
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
 
+        //For looking up and down with the camera
+        if (lookUp == -1 & transform.position.y > 2)
+        {
+            transform.Translate(0, -1 * upDown, 0);
+            //transform.RotateAround(target.transform.position, UpDown, Time.deltaTime * speed);
+        }
+        if (lookUp == 1 & transform.position.y < 15)
+        {
+            transform.Translate(0, 1 * upDown, 0);
+            //transform.RotateAround(target.transform.position, UpDown, -Time.deltaTime * speed);
+        }
+
         //For Keyboard use
         if (Input.GetKey("z"))
         {
@@ -48,20 +70,35 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
+        if (Input.GetKey("c") & transform.position.y > 2)
+        {
+            transform.Translate(0, -upDown, 0);
+        }
+        if (Input.GetKey("v") & transform.position.y < 15)
+        {
+            transform.Translate(0, upDown ,0);
+        }
+
+
+        //Pans the camera around the (dead)Player
+        if (dead)
+        {   
+            int i = 0; 
+            transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * deathSpeed);
+            while (i < 3 & this.transform.position.y < 25)
+            {
+                transform.Translate(panOut, panOut, 0);
+                i++;
+            }
+        }
     }
 
     //camera movement for gameover
     public void DeathCamera()
     {
-        deathSpeed = 5;
-
-        /*
-        while(dead)
-        {
-            Camera.main.transform.LookAt(target.transform);
-            transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * deathSpeed);
-            Debug.Log("deathtime");
-        }
-        */
+        deathSpeed = 20;
+        Camera.main.transform.LookAt(target.transform);
+        dead = true;
+        Debug.Log("deathtime");
     }
 }

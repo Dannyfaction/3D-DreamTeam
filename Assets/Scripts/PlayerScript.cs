@@ -33,10 +33,10 @@ public class PlayerScript : Humanoid {
 
         //Move Input detection
         //For Controller Use
-        //moveDelta = new Vector3(Move_X, 0, -Move_y);
+        moveDelta = new Vector3(Move_X, 0, -Move_y);
 
         //For Keyboard Use
-       moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
+       //moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
 
         //Velocity change
         move(cameraObject.transform.right * moveDelta.x + cameraObject.transform.forward * moveDelta.z);
