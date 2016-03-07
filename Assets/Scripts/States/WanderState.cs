@@ -6,7 +6,7 @@ public class WanderState : State {
 	
 	public int sightDistance;
     private Enemy enemyScript;
-	//public Collider[] enemyRange;
+	public Collider[] enemyRange;
 	public float patrolSpeed;
     private List<GameObject> waypoints = new List<GameObject>();
 	private int waypointInd = 0;

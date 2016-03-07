@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class State : Humanoid {
 
     //This is in the Unity Inspector for setting the NavMeshAgent
-	public NavMeshAgent agent;
+	[SerializeField] private NavMeshAgent agent;
 
     //The target for the Enemies (The Player in this case)
 	private GameObject target;

@@ -7,14 +7,12 @@ public class ChaseState : State {
 	private float chaseSpeed = 10;
 
     //Attack Range
-	private float GivenDistanceToTarget = 5;
-	private WeaponScript weaponScript;
+	private float GivenDistanceToTarget = 2;
 
     void Start()
     {
-		weaponScript = GetComponent<WeaponScript>();
+        WeaponScript weaponScript = GetComponent<WeaponScript>();
     }
-
 
     public override void Act(){
         //Setting the speed and Destination on the Agent Manager for the NavMash Pathfinding
@@ -24,10 +22,10 @@ public class ChaseState : State {
 	
 	public override void Reason(){
         //Total Distance from Player to Enemy
-		float distanceToTarget = Vector3.Distance(targetGetter().transform.position,transform.position);
+		float distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
 
-		//If the Target is within Attack Range
+        //If the Target is within Attack Range
 		if(distanceToTarget < GivenDistanceToTarget)
 			GetComponent<StateMachine>().SetState( StateID.Attack);
-		}
+	}
 }
