@@ -9,6 +9,13 @@ public class WorldEventScript : MonoBehaviour {
     [SerializeField]
     private GameObject playerCam;
 
+    [SerializeField]
+    private GameObject to_Text_1;
+    [SerializeField]
+    private GameObject to_Text_2;
+    [SerializeField]
+    private GameObject to_Text_3;
+
     CameraEventScript cameraEvents;
 
     CameraScript camera;
@@ -31,7 +38,7 @@ public class WorldEventScript : MonoBehaviour {
         event_1_Cam.gameObject.SetActive(true);
 
         //start event
-        cameraEvents.IntersectionEvent();
+        //cameraEvents.IntersectionEvent();
         Destroy(GameObject.Find("Event_1"));
     }
 
@@ -40,8 +47,30 @@ public class WorldEventScript : MonoBehaviour {
         Debug.Log("play 2");
     }
 
-    public void Event3()
+
+    //for Intro level events
+    public void To_Event1()
     {
-        Debug.Log("play 3");
+        to_Text_1.gameObject.SetActive(true);
+        Invoke("removeObject",3f);
+    }
+
+    public void To_Event2()
+    {
+        to_Text_2.gameObject.SetActive(true);
+        Invoke("removeObject", 3f);
+    }
+
+    public void To_Event3()
+    {
+        to_Text_3.gameObject.SetActive(true);
+        Invoke("removeObject", 3f);
+    }
+
+    private void removeObject()
+    {
+        to_Text_1.gameObject.SetActive(false);
+        to_Text_2.gameObject.SetActive(false);
+        to_Text_3.gameObject.SetActive(false);
     }
 }

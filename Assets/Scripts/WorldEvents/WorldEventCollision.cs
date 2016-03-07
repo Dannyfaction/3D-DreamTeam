@@ -16,6 +16,7 @@ public class WorldEventCollision : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        //for ingame events
         if(other.gameObject.name == "Event_1")
         {
             worldEvents.Event1();
@@ -28,8 +29,23 @@ public class WorldEventCollision : MonoBehaviour {
 
         if (other.gameObject.name == "Event_3")
         {
-            worldEvents.Event3();
+            worldEvents.To_Event1();
         }
 
+        //for intro level events
+        if (other.gameObject.name == "To_Event_1")
+        {
+            worldEvents.To_Event1();
+        }
+
+        if (other.gameObject.name == "To_Event_2")
+        {
+            worldEvents.To_Event2();
+        }
+
+        if (other.gameObject.name == "To_Event_3")
+        {
+            worldEvents.To_Event3();
+        }
     }
 }
