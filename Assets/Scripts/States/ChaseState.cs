@@ -7,7 +7,7 @@ public class ChaseState : State {
 	private float chaseSpeed = 10;
 
     //Attack Range
-	private float GivenDistanceToTarget = 2;
+	private float GivenDistanceToTarget = 5;
 
     void Start()
     {
