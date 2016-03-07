@@ -50,15 +50,14 @@ public class CameraScript : MonoBehaviour
         }
 
         //For looking up and down with the camera
-        if (lookUp == -1 & transform.position.y > 2)
+        if (lookUp == -1 & transform.position.y < target.transform.position.y - 10)
         {
             transform.Translate(0, -1 * upDown, 0);
-            //transform.RotateAround(target.transform.position, UpDown, Time.deltaTime * speed);
         }
-        if (lookUp == 1 & transform.position.y < 15)
+        if (lookUp == 1 & transform.position.y > target.transform.position.y + 5)
         {
             transform.Translate(0, 1 * upDown, 0);
-            //transform.RotateAround(target.transform.position, UpDown, -Time.deltaTime * speed);
+            
         }
 
         //For Keyboard use
@@ -70,11 +69,11 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
-        if (Input.GetKey("c") & transform.position.y > 2)
+        if (Input.GetKey("c") & transform.position.y > target.transform.position.y - 10)
         {
             transform.Translate(0, -upDown, 0);
         }
-        if (Input.GetKey("v") & transform.position.y < 15)
+        if (Input.GetKey("v") & transform.position.y < target.transform.position.y + 5)
         {
             transform.Translate(0, upDown, 0);
         }
