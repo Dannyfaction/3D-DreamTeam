@@ -9,6 +9,7 @@ public class PlayerScript : Humanoid {
     private GameObject healthObject;
     private WeaponScript weaponScript;
     private GameObject pauseObject;
+    private float dashCooldown = 100;
 
     ControllerScript Joystick;
 
@@ -72,6 +73,11 @@ public class PlayerScript : Humanoid {
         if (Input.GetButtonDown("Fire1")) //[NOTE] if statement Will be replaced by a keybinding class when it's availible
         {
             useTool();
+        }
+
+        if (Input.GetAxis("RightTrigger") == 1)
+        {
+            //Dash
         }
 
 

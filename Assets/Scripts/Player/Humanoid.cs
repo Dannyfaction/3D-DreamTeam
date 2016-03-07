@@ -6,7 +6,7 @@ public class Humanoid : MonoBehaviour
 {
     protected CharacterController Controller;
     protected bool isDead = false;
-    private ParticleSystem particleSystem;
+    private ParticleSystem[] particleSystems;
 
     //The Character's Model, (not collision or holder)
     [SerializeField] GameObject CharacterModel;
@@ -39,7 +39,7 @@ public class Humanoid : MonoBehaviour
             {
                 isDead = true;
                 Invoke("PlayParticle",1f);
-                Invoke("RemoveObject", 1.5f);
+                Invoke("RemoveObject", 2f);
 
             }
             else if (health <= 0 && transform.tag == "Player")
@@ -59,8 +59,11 @@ public class Humanoid : MonoBehaviour
     private void PlayParticle()
     {
         Instantiate(Resources.Load<GameObject>("Spirit"), new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
-        particleSystem = GetComponentInChildren<ParticleSystem>();
-        particleSystem.Play();
+        particleSystems = GetComponentsInChildren<ParticleSystem>();
+        particleSystems[0].Play();
+        particleSystems[1].Play();
+        //particleSystem = GetComponentInChildren<ParticleSystem>();
+        //particleSystem.Play();
     }
 
     private void RemoveObject()
