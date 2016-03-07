@@ -88,16 +88,20 @@ public class WeaponScript : MonoBehaviour {
         Debug.Log(Col.name);
 
         Humanoid hum = Col.GetComponent<Humanoid>();
+        AudioSource hitSound = Col.GetComponent<AudioSource>();
 
         if (hum && !Col.CompareTag(transform.tag))
         {
-            Debug.Log("Health Omlaag");
             hum.Health -= attackDamage;
+            hitSound.Play();
         }
         else if(!hum && !Col.CompareTag(transform.tag))
         {
             hum = Col.GetComponentInParent<Humanoid>();
+            hitSound = Col.GetComponentInParent<AudioSource>();
             hum.Health -= attackDamage;
+            hitSound.Play();
+            
         }
         //Debug.Log(Col.name);
     }
