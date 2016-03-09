@@ -18,19 +18,19 @@ public class GraphicsManager : MonoBehaviour {
 		TextureSettings.value = 1;
 
 		GraphicsSettings.onValueChanged.AddListener (delegate {
-			ChangeGraphics(GraphicsSettings);	
+			ChangeGraphics(GraphicsSettings);
 		});
 		AntiAliasingSettings.onValueChanged.AddListener (delegate {
-			ChangeAntiAliasing(AntiAliasingSettings);	
+			ChangeAntiAliasing(AntiAliasingSettings);
 		});
 		ShadowSettings.onValueChanged.AddListener (delegate {
-			ChangeShadows(ShadowSettings);	
+			ChangeShadows(ShadowSettings);
 		});
 		VSyncSettings.onValueChanged.AddListener (delegate {
-			ChangeVSync(VSyncSettings);	
+			ChangeVSync(VSyncSettings);
 		});
 		TextureSettings.onValueChanged.AddListener (delegate {
-			ChangeTextures(TextureSettings);	
+			ChangeTextures(TextureSettings);
 		});
 	}
 
