@@ -7,6 +7,7 @@ public class PlayerScript : Humanoid {
     Animator characterAnimator;
     private GameObject cameraObject;
     private GameObject healthObject;
+	private GameObject pauseObject;
 
     ControllerScript Joystick;
 
@@ -21,6 +22,7 @@ public class PlayerScript : Humanoid {
         Controller = transform.GetComponent<CharacterController>();
         characterAnimator = GetComponentInChildren<Animator>();
         cameraObject = GameObject.Find("Camera Object");
+		pauseObject = GameObject.Find ("PauseMenu").transform.Find("Menu").gameObject;
     }
 
 	void Update()
@@ -59,5 +61,16 @@ public class PlayerScript : Humanoid {
 
             useTool();
         }
+
+		if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 1)
+		{
+			Time.timeScale = 0;
+			pauseObject.SetActive(true);
+		}
+		else if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
+		{
+			Time.timeScale = 1;
+			pauseObject.SetActive(false);
+		}
     }
 }
