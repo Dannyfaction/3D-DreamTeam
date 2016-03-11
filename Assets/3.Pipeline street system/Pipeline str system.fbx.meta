@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 27f78eadf26dbeb469842e8779d936ea
+timeCreated: 1457363189
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Pipeline_Base
+    100004: Pipeline_street_segment_Cross
+    100006: Pipeline_street_segment_Straight
+    100008: Straight_Pipetunnel_segment_0
+    100010: Street_pipe___up
+    100012: Street_pipe_Big
+    100014: Street_pipe_connecter
+    100016: Street_pipe_down
+    100018: Street_pipe_down_cluster
+    100020: Street_pipe_Medium
+    100022: Street_pipe_Small
+    100024: Street_pipe_up_1
+    100026: Street_pipe_up_cluster
+    400000: //RootNode
+    400002: Pipeline_Base
+    400004: Pipeline_street_segment_Cross
+    400006: Pipeline_street_segment_Straight
+    400008: Straight_Pipetunnel_segment_0
+    400010: Street_pipe___up
+    400012: Street_pipe_Big
+    400014: Street_pipe_connecter
+    400016: Street_pipe_down
+    400018: Street_pipe_down_cluster
+    400020: Street_pipe_Medium
+    400022: Street_pipe_Small
+    400024: Street_pipe_up_1
+    400026: Street_pipe_up_cluster
+    2300000: Pipeline_Base
+    2300002: Straight_Pipetunnel_segment_0
+    2300004: Street_pipe___up
+    2300006: Street_pipe_Big
+    2300008: Street_pipe_connecter
+    2300010: Street_pipe_down
+    2300012: Street_pipe_Medium
+    2300014: Street_pipe_Small
+    2300016: Street_pipe_up_1
+    3300000: Pipeline_Base
+    3300002: Straight_Pipetunnel_segment_0
+    3300004: Street_pipe___up
+    3300006: Street_pipe_Big
+    3300008: Street_pipe_connecter
+    3300010: Street_pipe_down
+    3300012: Street_pipe_Medium
+    3300014: Street_pipe_Small
+    3300016: Street_pipe_up_1
+    4300000: Straight_Pipetunnel_segment_0
+    4300002: Street_pipe_Big
+    4300004: Street_pipe_Medium
+    4300006: Street_pipe_Small
+    4300008: Street_pipe_connecter
+    4300010: Street_pipe_down
+    4300012: Pipeline_Base
+    4300014: Street_pipe_up_1
+    4300016: Street_pipe___up
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

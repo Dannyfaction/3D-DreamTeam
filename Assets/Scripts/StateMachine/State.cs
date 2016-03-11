@@ -8,7 +8,6 @@ public abstract class State : Humanoid {
 
     //The target for the Enemies (The Player in this case)
 	private GameObject target;
-    private bool isWalking;
 
     public GameObject targetGetter()
     {
