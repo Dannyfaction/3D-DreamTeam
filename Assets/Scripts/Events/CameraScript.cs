@@ -15,6 +15,9 @@ public class CameraScript : MonoBehaviour
     private float lookUp;
     private float upDown;
 
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+
 
     private bool dead = false;
 
@@ -24,6 +27,8 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
+        initialPosition = transform.position;
+        initialRotation = Quaternion.identity;
         //UpDown = new Vector3(0, 0, 1);
         upDown = 0.2f;
         Joystick = GameObject.Find("ThirdPersonPlayer").GetComponent<ControllerScript>();
@@ -42,7 +47,6 @@ public class CameraScript : MonoBehaviour
         //For turning the Camera around
         //For Controller use
 
-        /*
         if (look == 1)
         {
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
@@ -51,7 +55,6 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
-        */
 
         //For looking up and down with the camera
         if (lookUp == -1 & transform.position.y < target.transform.position.y - 5)
@@ -66,7 +69,6 @@ public class CameraScript : MonoBehaviour
 
         //For Keyboard use
 
-        /*
         if (Input.GetKey("z"))
         {
             transform.RotateAround(target.transform.position, Vector3.up, Time.deltaTime * speed);
@@ -75,7 +77,7 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
-        */
+
         if (Input.GetKey("c") & transform.position.y > target.transform.position.y - 5)
         {
             transform.Translate(0, -upDown, 0);
@@ -83,6 +85,12 @@ public class CameraScript : MonoBehaviour
         if (Input.GetKey("v") & transform.position.y < target.transform.position.y + 5)
         {
             transform.Translate(0, upDown, 0);
+        }
+
+        if (Input.GetKeyDown("b"))
+        {
+            Character character = GameObject.Find("ThirdPersonPlayer").GetComponent<Character>();
+            character.Health -= 20;
         }
 
 
@@ -96,7 +104,7 @@ public class CameraScript : MonoBehaviour
                 transform.Translate(panOut, panOut, 0);
                 i++;
             }
-        }
+        } 
     }
 
     //camera movement for gameover
@@ -105,5 +113,12 @@ public class CameraScript : MonoBehaviour
         deathSpeed = 20;
         Camera.main.transform.LookAt(target.transform);
         dead = true;
+    }
+
+    public void CameraReset()
+    {
+        dead = false;
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
     }
 }
