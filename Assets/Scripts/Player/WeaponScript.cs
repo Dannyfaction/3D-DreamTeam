@@ -17,13 +17,10 @@ public class WeaponScript : MonoBehaviour {
         set { isAttacking = value; }
     }
 
-    [SerializeField]
-    float attackDamage = 20;
-
+    [SerializeField] float attackDamage = 20;
     private GameObject swordTrail;
 
-    [SerializeField]
-    int maxCombo = 3;
+    [SerializeField] int maxCombo = 3;
     [SerializeField]
     float comboTime = 0.5f;
     int currentCombo;
@@ -72,9 +69,9 @@ public class WeaponScript : MonoBehaviour {
         else if (attackCooldown + comboTime <= 0 && Hitbox.activeSelf)
         {
             Hitbox.SetActive(false);
+            isAttacking = false;
             if (transform.tag == "Player")
             {
-                isAttacking = false;
                 swordTrail.SetActive(false);
             }
             
@@ -85,14 +82,13 @@ public class WeaponScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider Col)
     {
-        Debug.Log(Col.name);
-
         Humanoid hum = Col.GetComponent<Humanoid>();
         AudioSource hitSound = Col.GetComponent<AudioSource>();
 
         if (hum && !Col.CompareTag(transform.tag))
         {
             hum.Health -= attackDamage;
+            hum.Knockback(transform.root.Find("Model"));
             hitSound.Play();
         }
         else if(!hum && !Col.CompareTag(transform.tag))
@@ -100,9 +96,8 @@ public class WeaponScript : MonoBehaviour {
             hum = Col.GetComponentInParent<Humanoid>();
             hitSound = Col.GetComponentInParent<AudioSource>();
             hum.Health -= attackDamage;
+            hum.Knockback(transform);
             hitSound.Play();
-            
         }
-        //Debug.Log(Col.name);
     }
 }

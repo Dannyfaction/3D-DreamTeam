@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class WanderState : State {
 	
+    //Going to be renamed to IdleState
+    //Add Idle Animations on Start
+
 	public int sightDistance;
     private Enemy enemyScript;
 	public Collider[] enemyRange;
@@ -51,9 +54,12 @@ public class WanderState : State {
 	public override void Reason()	
 	{
 		float distanceToPlayer = Vector3.Distance(targetGetter().transform.position, transform.position);
-		if(distanceToPlayer <  sightDistance)
+        if (distanceToPlayer < sightDistance)
+        {
             //This makes the Enemy chase the Player once it is in a certain range
-			GetComponent<StateMachine>().SetState( StateID.Chase);
+            GetComponent<StateMachine>().SetState(StateID.Chase);
+            //enemyScript.IsMoving = true;
+        }
 	}
 }
 

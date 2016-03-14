@@ -23,7 +23,7 @@ public class PlayerScript : Humanoid {
         weaponScript = GetComponentInChildren<WeaponScript>();
         Joystick = GetComponent<ControllerScript>();
         healthObject = GameObject.Find("Health");
-        pauseObject = GameObject.Find("Canvas").transform.Find("Pause").gameObject;
+        pauseObject = GameObject.Find("PauseMenu").transform.Find("Menu").gameObject;
         Controller = transform.GetComponent<CharacterController>();
         characterAnimator = GetComponentInChildren<Animator>();
         cameraObject = GameObject.Find("Camera Object");
@@ -82,12 +82,25 @@ public class PlayerScript : Humanoid {
 
 
         //Pause the game once start button on controller has been pressed
+        //For Controller Use
         if (Input.GetButtonDown("Start") && Time.timeScale == 1)
         {
             Time.timeScale = 0;
             pauseObject.SetActive(true);
         }
         else if (Input.GetButtonDown("Start") && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pauseObject.SetActive(false);
+        }
+
+        //For Keyboard Use
+        if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            pauseObject.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
         {
             Time.timeScale = 1;
             pauseObject.SetActive(false);
