@@ -49,7 +49,7 @@ public class PlayerScript : Humanoid {
         }*/
 
         //For Keyboard Use
-        if (!weaponScript.isAttackingGetSet && Time.timeScale == 1)
+        if (Time.timeScale == 1)
         {
             moveDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //[NOTE] GetAxis method Will be replaced by a keybinding class when it's availible
         }
