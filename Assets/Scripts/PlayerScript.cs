@@ -8,6 +8,9 @@ public class PlayerScript : Humanoid {
     private GameObject cameraObject;
     private GameObject healthObject;
 	private GameObject pauseObject;
+	private GameObject pauseObject1;
+	private GameObject pauseObject2;
+	private GameObject pauseObject3;
 
     ControllerScript Joystick;
 
@@ -23,11 +26,15 @@ public class PlayerScript : Humanoid {
         characterAnimator = GetComponentInChildren<Animator>();
         cameraObject = GameObject.Find("Camera Object");
 		pauseObject = GameObject.Find ("PauseMenu").transform.Find("Menu").gameObject;
+		pauseObject1 = GameObject.Find ("PauseMenu").transform.Find("Sound (Menu)").gameObject;
+		pauseObject2 = GameObject.Find ("PauseMenu").transform.Find("Graphics (Menu)").gameObject;
+		pauseObject3 = GameObject.Find ("PauseMenu").transform.Find("Options (Menu)").gameObject;
     }
 
 	void Update()
     {
-        healthObject.transform.localScale = new Vector3((health/100),1,1);
+        healthObject.transform.localScale = new Vector3((health/100),0,1);
+
 
         //From the Inputmanager
         Move_X = Joystick.LeftStick_X * moveSpeed;
@@ -71,6 +78,9 @@ public class PlayerScript : Humanoid {
 		{
 			Time.timeScale = 1;
 			pauseObject.SetActive(false);
+			pauseObject1.SetActive(false);
+			pauseObject2.SetActive(false);
+			pauseObject3.SetActive(false);
 		}
     }
 }
