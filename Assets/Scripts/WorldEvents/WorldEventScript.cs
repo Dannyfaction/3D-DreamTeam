@@ -2,27 +2,17 @@
 using System.Collections;
 
 public class WorldEventScript : MonoBehaviour {
-
-    public GameObject event_1_Cam;
-
     //main camera
     [SerializeField]
     private GameObject playerCam;
-
-    [SerializeField]
-    private GameObject to_Text_1;
-    [SerializeField]
-    private GameObject to_Text_2;
-    [SerializeField]
-    private GameObject to_Text_3;
 
     CameraEventScript cameraEvents;
 
     CameraScript camera;
 	// Use this for initialization
 	void Start () {
+        cameraEvents = GameObject.Find("WorldEventSystem").GetComponent<CameraEventScript>();
         camera = playerCam.GetComponent<CameraScript>();
-        cameraEvents = event_1_Cam.GetComponent<CameraEventScript>();
 	}
 	
 	// Update is called once per frame
@@ -34,19 +24,28 @@ public class WorldEventScript : MonoBehaviour {
     {
         Debug.Log("play 1");
         //switches camera
-        playerCam.gameObject.SetActive(false);
-        event_1_Cam.gameObject.SetActive(true);
+        cameraEvents.Event_1();
 
         //start event
-        //cameraEvents.IntersectionEvent();
         Destroy(GameObject.Find("Event_1"));
     }
 
     public void Event2()
     {
-        Debug.Log("play 2");
+        cameraEvents.Event_2();
     }
 
+
+
+
+
+    /* for into level if needed
+    [SerializeField]
+    private GameObject to_Text_1;
+    [SerializeField]
+    private GameObject to_Text_2;
+    [SerializeField]
+    private GameObject to_Text_3;
 
     //for Intro level events
     public void To_Event1()
@@ -73,4 +72,5 @@ public class WorldEventScript : MonoBehaviour {
         to_Text_2.gameObject.SetActive(false);
         to_Text_3.gameObject.SetActive(false);
     }
+     */
 }

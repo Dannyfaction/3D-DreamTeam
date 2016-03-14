@@ -20,6 +20,7 @@ public class WorldEventCollision : MonoBehaviour {
         if(other.gameObject.name == "Event_1")
         {
             worldEvents.Event1();
+            Debug.Log("help");
         }
 
         if (other.gameObject.name == "Event_2")
@@ -27,6 +28,7 @@ public class WorldEventCollision : MonoBehaviour {
             worldEvents.Event2();
         }
 
+        /* for the intro level if needed
         if (other.gameObject.name == "Event_3")
         {
             worldEvents.To_Event1();
@@ -46,6 +48,6 @@ public class WorldEventCollision : MonoBehaviour {
         if (other.gameObject.name == "To_Event_3")
         {
             worldEvents.To_Event3();
-        }
+        }*/
     }
 }

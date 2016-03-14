@@ -4,7 +4,7 @@ using System.Collections;
 public class WeaponScript : MonoBehaviour {
 
     [SerializeField]
-    GameObject Hitbox;
+    private GameObject Hitbox;
 
     [SerializeField]
     float maxAttackCooldown = 4;
@@ -20,7 +20,7 @@ public class WeaponScript : MonoBehaviour {
     [SerializeField]
     float attackDamage = 20;
 
-    GameObject swordTrail;
+    private GameObject swordTrail;
 
     [SerializeField]
     int maxCombo = 3;
@@ -34,7 +34,7 @@ public class WeaponScript : MonoBehaviour {
     }
     
     [SerializeField]
-    Animator animator;
+    private Animator animator;
 
     void Start()
     {
@@ -88,9 +88,21 @@ public class WeaponScript : MonoBehaviour {
         Debug.Log(Col.name);
 
         Humanoid hum = Col.GetComponent<Humanoid>();
+        AudioSource hitSound = Col.GetComponent<AudioSource>();
 
         if (hum && !Col.CompareTag(transform.tag))
+        {
             hum.Health -= attackDamage;
-        Debug.Log(Col.name);
+            hitSound.Play();
+        }
+        else if(!hum && !Col.CompareTag(transform.tag))
+        {
+            hum = Col.GetComponentInParent<Humanoid>();
+            hitSound = Col.GetComponentInParent<AudioSource>();
+            hum.Health -= attackDamage;
+            hitSound.Play();
+            
+        }
+        //Debug.Log(Col.name);
     }
 }

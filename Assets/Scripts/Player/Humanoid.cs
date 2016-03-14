@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Humanoid : MonoBehaviour
 {
     protected CharacterController Controller;
+    protected bool isDead = false;
+    private ParticleSystem[] particleSystems;
 
     //The Character's Model, (not collision or holder)
     [SerializeField] GameObject CharacterModel;
@@ -14,6 +16,11 @@ public class Humanoid : MonoBehaviour
 
     //The health of the Humanoid
     [SerializeField] protected float health = 100;
+    public bool IsMoving
+    {
+        get { return isMoving; }
+        set { isMoving = value; }
+    }
     protected bool isMoving;
 
     //The movement speed of the Humanoid
@@ -28,27 +35,20 @@ public class Humanoid : MonoBehaviour
         set
         {
             health = value;
-            if (health <= 0)
-                Destroy(this.gameObject);
+            if (health == 0 && transform.tag == "Enemy")
+            {
+                isDead = true;
+                Invoke("PlayParticle",1f);
+                Invoke("RemoveObject", 2f);
+
+            }
+            else if (health <= 0 && transform.tag == "Player")
+            {
+                Debug.Log("You died!");
+            }
+
         }
     }
-
-    void Start()
-    {
-        if (transform.tag == "Finish")
-        {
-            CharacterModel = gameObject;
-            //WeaponScript weaponScript = GetComponentInChildren<WeaponScript>();
-            Invoke("ScriptSetter", 0.5f);
-        }
-    }
-
-    void ScriptSetter()
-    {
-        //WeaponScript weaponScript = transform.Find("Weapon").GetComponent<WeaponScript>();
-        //weaponList.Add(weaponScript);
-    }
-
 
     protected void useTool()
     {
@@ -56,11 +56,20 @@ public class Humanoid : MonoBehaviour
             weaponList[selectedWeapon % weaponList.Count].attack();
     }
 
-    public void WeaponListSetter(WeaponScript input)
+    private void PlayParticle()
     {
-        //weaponList.Add(input);
+        Instantiate(Resources.Load<GameObject>("Spirit"), new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
+        particleSystems = GetComponentsInChildren<ParticleSystem>();
+        particleSystems[0].Play();
+        particleSystems[1].Play();
+        //particleSystem = GetComponentInChildren<ParticleSystem>();
+        //particleSystem.Play();
     }
 
+    private void RemoveObject()
+    {
+        Destroy(this.gameObject);
+    }
 
     protected void move(Vector3 moveDirection)
     {

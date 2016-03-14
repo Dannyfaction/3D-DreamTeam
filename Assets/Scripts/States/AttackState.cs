@@ -5,15 +5,8 @@ public class AttackState : State {
 
 	public int sightDistance;
 
-   void Start()
-    {
-        Invoke("addScripts", 0.5f);
-    }
-
 	public override void Act()
 	{
-		Debug.Log("Attacking");
-
         useTool();
 		/*	
 		 * 	Dealing damgage value 5-10?
@@ -22,14 +15,6 @@ public class AttackState : State {
 		 * 	De hoop word minder met de dag dat ik wacht..
 		 */
 	}
-
-    private void addScripts()
-    {
-        WeaponScript weaponScript = GetComponentInChildren<WeaponScript>();
-        weaponList.Add(weaponScript);
-        Humanoid humanoid = GetComponent<Humanoid>();
-        //humanoid.WeaponListSetter(weaponScript);
-    }
 	
 	public override void Reason(){
 		float distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
