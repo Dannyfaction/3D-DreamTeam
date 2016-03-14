@@ -9,7 +9,7 @@ public class ChaseState : State {
     private WeaponScript weaponScript;
 
     //Attack Range
-	private float GivenDistanceToTarget = 5;
+    private float GivenDistanceToTarget = 5;
 
     void Start()
     {
