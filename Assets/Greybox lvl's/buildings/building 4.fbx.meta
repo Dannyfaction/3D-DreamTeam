@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: a40b8ad77e50a4a479c8837da48dd6de
+timeCreated: 1457982952
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: big_window
+    100002: big_window1
+    100004: big_window2
+    100006: block
+    100008: block1
+    100010: block2
+    100012: block2 1
+    100014: house
+    100016: house 1
+    100018: house_full
+    100020: house_left
+    100022: house_right
+    100024: normaal_huis_unwrap:polySurface1
+    100026: //RootNode
+    100028: normal_house
+    100030: normal_house_increment
+    100032: pillar
+    100034: pillar1
+    100036: pillar2
+    100038: pillar2 1
+    100040: pillar3
+    100042: pillar3 1
+    100044: pillar4
+    100046: pillar4 1
+    100048: stairs
+    100050: stairs 1
+    100052: transform10
+    100054: transform11
+    100056: transform12
+    100058: transform13
+    100060: transform14
+    100062: transform15
+    100064: transform16
+    100066: transform17
+    100068: transform18
+    100070: transform19
+    100072: transform20
+    100074: transform21
+    100076: transform22
+    100078: transform23
+    100080: transform9
+    100082: upper_block
+    100084: upper_block 1
+    400000: big_window
+    400002: big_window1
+    400004: big_window2
+    400006: block
+    400008: block1
+    400010: block2
+    400012: block2 1
+    400014: house
+    400016: house 1
+    400018: house_full
+    400020: house_left
+    400022: house_right
+    400024: normaal_huis_unwrap:polySurface1
+    400026: //RootNode
+    400028: normal_house
+    400030: normal_house_increment
+    400032: pillar
+    400034: pillar1
+    400036: pillar2
+    400038: pillar2 1
+    400040: pillar3
+    400042: pillar3 1
+    400044: pillar4
+    400046: pillar4 1
+    400048: stairs
+    400050: stairs 1
+    400052: transform10
+    400054: transform11
+    400056: transform12
+    400058: transform13
+    400060: transform14
+    400062: transform15
+    400064: transform16
+    400066: transform17
+    400068: transform18
+    400070: transform19
+    400072: transform20
+    400074: transform21
+    400076: transform22
+    400078: transform23
+    400080: transform9
+    400082: upper_block
+    400084: upper_block 1
+    2300000: block1
+    2300002: block2
+    2300004: house
+    2300006: pillar1
+    2300008: pillar2
+    2300010: pillar3
+    2300012: pillar4
+    2300014: stairs
+    2300016: upper_block
+    3300000: block1
+    3300002: block2
+    3300004: house
+    3300006: pillar1
+    3300008: pillar2
+    3300010: pillar3
+    3300012: pillar4
+    3300014: stairs
+    3300016: upper_block
+    4300000: upper_block
+    4300002: stairs
+    4300004: pillar1
+    4300006: pillar2
+    4300008: pillar3
+    4300010: pillar4
+    4300012: block1
+    4300014: block2
+    4300016: house
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

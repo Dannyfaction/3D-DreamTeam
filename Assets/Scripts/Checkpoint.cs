@@ -19,7 +19,8 @@ public class Checkpoint : MonoBehaviour {
     {
         if (collision.transform.tag == "Player")
         {
-            Debug.Log("Hallo");
+            PlayerControl playerScript = collision.GetComponent<PlayerControl>();
+            playerScript.CurrentCheckpoint = whichCheckpoint;
         }
     }
 }

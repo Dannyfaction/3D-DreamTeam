@@ -16,8 +16,6 @@ public class CameraScript : MonoBehaviour
     private float upDown;
 
     private Vector3 initialPosition;
-    private Quaternion initialRotation;
-
 
     private bool dead = false;
 
@@ -27,8 +25,7 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        initialPosition = transform.position;
-        initialRotation = Quaternion.identity;
+        initialPosition = transform.localPosition;
         //UpDown = new Vector3(0, 0, 1);
         upDown = 0.2f;
         Joystick = GameObject.Find("ThirdPersonPlayer").GetComponent<ControllerScript>();
@@ -41,8 +38,8 @@ public class CameraScript : MonoBehaviour
 
         //From the Inputmanager
 
-        //look = Joystick.RightStick_X;
-        //lookUp = Joystick.RightStick_Y;
+        look = Joystick.RightStick_X;
+        lookUp = Joystick.RightStick_Y;
 
         //For turning the Camera around
         //For Controller use
@@ -115,10 +112,10 @@ public class CameraScript : MonoBehaviour
         dead = true;
     }
 
-    public void CameraReset()
+    public void CameraReset(Quaternion rotation)
     {
         dead = false;
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
+        transform.localPosition = initialPosition;
+        transform.rotation = rotation;
     }
 }

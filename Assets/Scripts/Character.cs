@@ -8,7 +8,19 @@ public class Character : MonoBehaviour {
     private CameraScript cameraScript;
     private GameObject playerCamera;
 
+    [SerializeField]
+    GameObject CharacterModel;
+
+    //The movement speed of the Humanoid
+    [SerializeField]
+    protected float moveSpeed = 1;
+
     private int currentCheckpoint = 0;
+    public int CurrentCheckpoint
+    {
+        get { return currentCheckpoint; }
+        set { currentCheckpoint = value; }
+    }
 
     private float health = 100;
     public float Health
@@ -52,18 +64,29 @@ public class Character : MonoBehaviour {
     private void RespawnCharacter()
     {
         Vector3 checkpointPosition;
+        Quaternion checkpointRotation;
         switch (currentCheckpoint)
         {
-            case 0:
-                checkpointPosition = new Vector3(-377.43f, 0.48f, -182.47f);
+            case 1:
+                checkpointPosition = new Vector3(-394.39f,0,-125.7f);
+                checkpointRotation = Quaternion.identity;
+                break;
+            case 2:
+                checkpointPosition = new Vector3(-280.2f,0,15.52f);
+                checkpointRotation = Quaternion.Euler(0, 90, 0);
+                break;
+            case 3:
+                checkpointPosition = new Vector3(-58.8f,0,-31.9f);
+                checkpointRotation = Quaternion.Euler(0, 90, 0);
                 break;
             default:
-                checkpointPosition = new Vector3(-377.43f, 0.48f, -182.47f);
+                checkpointPosition = new Vector3(-605.14f, 0f, -272f);
+                checkpointRotation = Quaternion.Euler(0, 90, 0);
                 break;
         }
         transform.position = checkpointPosition;
-        transform.rotation = Quaternion.identity;
-        cameraScript.CameraReset();
+        transform.rotation = checkpointRotation;
+        cameraScript.CameraReset(checkpointRotation);
         health = 100;
         //Fix animations
     }
@@ -79,5 +102,11 @@ public class Character : MonoBehaviour {
 
 		//moveDirection = localMove;
 		moveDirection += Vector3.Scale(localMove, drag) * Mathf.Abs(moveDirection.sqrMagnitude - 1);
-	}
+
+        /*
+        //CharacterModel move rotation
+        if (moveDirection.sqrMagnitude > 0)
+            CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
+        */
+    }
 }
