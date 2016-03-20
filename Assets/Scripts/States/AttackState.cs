@@ -13,7 +13,7 @@ public class AttackState : State
 
     public override void Act()
     {
-        useTool();
+        useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
         /*	
 		 * 	Dealing damgage value 5-10?
 		 * 	Health system van de player koppellen aan AttackState

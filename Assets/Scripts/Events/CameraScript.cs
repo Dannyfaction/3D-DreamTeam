@@ -28,7 +28,7 @@ public class CameraScript : MonoBehaviour
         initialPosition = transform.localPosition;
         //UpDown = new Vector3(0, 0, 1);
         upDown = 0.2f;
-        Joystick = GameObject.Find("ThirdPersonPlayer").GetComponent<ControllerScript>();
+        Joystick = GameObject.Find("N_ThirdPersonPlayer").GetComponent<ControllerScript>();
     }
 
     void Update()

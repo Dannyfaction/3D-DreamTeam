@@ -39,12 +39,13 @@ public class WeaponScript : MonoBehaviour {
         attackCooldown = -comboTime;
         if (transform.tag == "Player")
         {
-            swordTrail = transform.Find("Trailrenderer_Sword").gameObject;
+            //swordTrail = transform.Find("Trailrenderer_Sword").gameObject;
         }
     }
 
     public void attack()
     {
+        Debug.Log("Ja");
         if (attackCooldown <= 0 || animator.GetInteger("AttackState") == 0)
         {
             attackCooldown = maxAttackCooldown;

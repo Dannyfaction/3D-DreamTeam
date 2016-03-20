@@ -56,8 +56,9 @@ public class Humanoid : MonoBehaviour
         }
     }
 
-    protected void useTool()
+    protected void useTool(WeaponScript input)
     {
+        weaponList.Add(input);
         if (weaponList.Count > 0)
             weaponList[selectedWeapon % weaponList.Count].attack();
     }
