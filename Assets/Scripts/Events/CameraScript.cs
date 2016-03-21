@@ -6,11 +6,10 @@ public class CameraScript : MonoBehaviour
 {
     ControllerScript Joystick;
 
-    [SerializeField]
-    public GameObject target = null;
+    [SerializeField] private GameObject target = null;
 
     //Camera speed
-    public float speed;
+    [SerializeField] private float speed;
     private float look;
     private float lookUp;
     private float upDown;
@@ -86,7 +85,7 @@ public class CameraScript : MonoBehaviour
 
         if (Input.GetKeyDown("b"))
         {
-            Character character = GameObject.Find("ThirdPersonPlayer").GetComponent<Character>();
+            Character character = GameObject.Find("N_ThirdPersonPlayer").GetComponent<Character>();
             character.Health -= 20;
         }
 

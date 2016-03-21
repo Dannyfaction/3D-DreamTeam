@@ -6,15 +6,6 @@ public class Character : Humanoid
 
     CharacterController controller;
     Animator animator;
-    private CameraScript cameraScript;
-    private GameObject playerCamera;
-
-    [SerializeField]
-    GameObject CharacterModel;
-
-    //The movement speed of the Humanoid
-    [SerializeField]
-    protected float moveSpeed = 1;
 
     private int currentCheckpoint = 0;
     public int CurrentCheckpoint
@@ -109,10 +100,8 @@ public class Character : Humanoid
         //moveDirection = localMove;
         moveDirection += Vector3.Scale(localMove, drag) * Mathf.Abs(moveDirection.sqrMagnitude - 1);
 
-        /*
         //CharacterModel move rotation
         if (moveDirection.sqrMagnitude > 0)
             CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
-        */
     }
 }

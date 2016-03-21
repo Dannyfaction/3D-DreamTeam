@@ -11,7 +11,7 @@ public class Humanoid : MonoBehaviour
 
 
     //The Character's Model, (not collision or holder)
-    [SerializeField] GameObject CharacterModel;
+    [SerializeField] protected GameObject CharacterModel;
 
     [SerializeField] protected List<WeaponScript> weaponList = new List<WeaponScript>();
     protected int selectedWeapon = 0;
@@ -25,12 +25,12 @@ public class Humanoid : MonoBehaviour
         set { isMoving = value; }
     }
     protected bool isMoving;
-
+    
     //The movement speed of the Humanoid
     [SerializeField] protected float moveSpeed = 1;
 
-    private CameraScript cameraScript;
-    [SerializeField] private GameObject playerCamera;
+    protected CameraScript cameraScript;
+    [SerializeField] protected GameObject playerCamera;
 
     //Boolean for making the Humanoid float
     [SerializeField] protected bool characterCanFloat = false;
