@@ -28,6 +28,11 @@ public class WorldEventCollision : MonoBehaviour {
             worldEvents.Event2();
         }
 
+        if (other.gameObject.name == "Event_3")
+        {
+            worldEvents.Event3();
+        }
+
         /* for the intro level if needed
         if (other.gameObject.name == "Event_3")
         {

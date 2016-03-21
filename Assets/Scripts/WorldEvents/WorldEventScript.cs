@@ -22,7 +22,6 @@ public class WorldEventScript : MonoBehaviour {
 
     public void Event1()
     {
-        Debug.Log("play 1");
         //switches camera
         cameraEvents.Event_1();
 
@@ -33,6 +32,15 @@ public class WorldEventScript : MonoBehaviour {
     public void Event2()
     {
         cameraEvents.Event_2();
+
+        Destroy(GameObject.Find("Event_2"));
+    }
+
+    public void Event3()
+    {
+        cameraEvents.Event_3();
+
+        Destroy(GameObject.Find("Event_3"));
     }
 
 

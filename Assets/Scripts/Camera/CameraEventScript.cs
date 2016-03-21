@@ -7,14 +7,17 @@ public class CameraEventScript : MonoBehaviour {
     private GameObject event_1_Cam;
     [SerializeField]
     private GameObject event_2_Cam;
+    [SerializeField]
+    private GameObject event_3_Cam;
 
     private GameObject event_1_position;
-    private GameObject event_2_position;
+    private GameObject event_3_position;
 
     private GameObject player;
 
     private Animator animatorEvent1;
     private Animator animatorEvent2;
+    private Animator animatorEvent3;
 
     //main camera
     [SerializeField]
@@ -27,11 +30,12 @@ public class CameraEventScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         event_1_position = GameObject.Find("Event_1_position");
-        event_2_position = GameObject.Find("Event_2_position");
+        event_3_position = GameObject.Find("Event_3_position");
 
         player = GameObject.Find("Player");
         animatorEvent1 = event_1_Cam.GetComponent<Animator>();
         animatorEvent2 = event_2_Cam.GetComponent<Animator>();
+        animatorEvent3 = event_3_Cam.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -61,19 +65,30 @@ public class CameraEventScript : MonoBehaviour {
         event_2_Cam.gameObject.SetActive(true);
 
         animatorEvent2.SetBool("Event_2", true);
-        Invoke("Event_2_Back", 2f);
+
+        Invoke("Back_To_Player", 6f);
+    }
+
+    public void Event_3()
+    {
+        playerCam.gameObject.SetActive(false);
+        event_3_Cam.gameObject.SetActive(true);
+
+        animatorEvent3.SetBool("Event_3", true);
+        Invoke("Event_3_Back", 2f);
 
     }
 
-    private void Event_2_Back()
+    private void Event_3_Back()
     {
-        player.transform.position = event_2_position.transform.position;
+        player.transform.position = event_3_position.transform.position;
         Invoke("Back_To_Player", 6f);
     }
 
     private void Back_To_Player() {
         event_1_Cam.gameObject.SetActive(false);
         event_2_Cam.gameObject.SetActive(false);
+        event_3_Cam.gameObject.SetActive(false);
         playerCam.gameObject.SetActive(true);
     }
 }
