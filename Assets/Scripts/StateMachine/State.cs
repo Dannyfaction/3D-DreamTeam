@@ -11,7 +11,7 @@ public abstract class State : Humanoid {
 
     public GameObject targetGetter()
     {
-        target = GameObject.Find("ThirdPersonPlayer");
+        target = GameObject.Find("N_ThirdPersonPlayer");
         return target;
     }
 

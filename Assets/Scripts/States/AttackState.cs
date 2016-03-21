@@ -13,7 +13,19 @@ public class AttackState : State
 
     public override void Act()
     {
+<<<<<<< HEAD
 		useTool();
+=======
+        useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
+        /*	
+		 * 	Dealing damgage value 5-10?
+		 * 	Health system van de player koppellen aan AttackState
+		 * 	Proto bevat: Attack, Chase en wander; uiteindelijk: Flee..
+		 * 	De hoop word minder met de dag dat ik wacht..
+		 * 
+		 *
+		 */
+>>>>>>> master
 
         playerPos = targetGetter().transform.position;
         aiPos = transform.position - playerPos;
