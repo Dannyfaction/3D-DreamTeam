@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public enum StateID
 {
 	NullStateID = 0,
-	Wandering = 1,
+	Idle = 1,
 	Chase = 2,
-	Attack = 3
+	Attack = 3,
+	Alarming = 4
 }
 
 public class Enemy : Humanoid {
@@ -46,6 +47,7 @@ public class Enemy : Humanoid {
         {
             characterAnimator.SetBool("isDead", true);
         }
+
     }
 
 	private StateMachine stateMachine;
@@ -98,13 +100,13 @@ public class Enemy : Humanoid {
 
         }
 		MakeStates();
-		stateMachine.SetState( StateID.Wandering );
+		stateMachine.SetState( StateID.Idle );
 	}
 	
 	void MakeStates() {
         //The states in the Dictionary
 		stateMachine.AddState( StateID.Chase, GetComponent<ChaseState>() );
-		stateMachine.AddState( StateID.Wandering, GetComponent<WanderState>() );
+		stateMachine.AddState( StateID.Idle, GetComponent<WanderState>() );
 		stateMachine.AddState( StateID.Attack, GetComponent<AttackState>() );
 	}
 	

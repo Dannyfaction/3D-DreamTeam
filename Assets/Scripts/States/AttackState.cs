@@ -13,15 +13,7 @@ public class AttackState : State
 
     public override void Act()
     {
-        useTool();
-        /*	
-		 * 	Dealing damgage value 5-10?
-		 * 	Health system van de player koppellen aan AttackState
-		 * 	Proto bevat: Attack, Chase en wander; uiteindelijk: Flee..
-		 * 	De hoop word minder met de dag dat ik wacht..
-		 * 
-		 *
-		 */
+		useTool();
 
         playerPos = targetGetter().transform.position;
         aiPos = transform.position - playerPos;
@@ -32,8 +24,6 @@ public class AttackState : State
     {
         enemyScript = GetComponent<Enemy>();
     }
-
-
 
     public override void Reason()
     {
