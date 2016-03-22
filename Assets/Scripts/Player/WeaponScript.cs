@@ -45,7 +45,6 @@ public class WeaponScript : MonoBehaviour {
 
     public void attack()
     {
-        Debug.Log("Ja");
         if (attackCooldown <= 0 || animator.GetInteger("AttackState") == 0)
         {
             attackCooldown = maxAttackCooldown;
@@ -61,24 +60,28 @@ public class WeaponScript : MonoBehaviour {
 
 	void Update()
 	{
-        if (attackCooldown + comboTime <= 0 && animator.GetInteger("AttackState") > 0)
+        if (transform.tag == "Player")
         {
-            animator.SetInteger("AttackState", Combo = 0);
-        }
-        if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
-            Hitbox.SetActive(true);
-        else if (attackCooldown + comboTime <= 0 && Hitbox.activeSelf)
-        {
-            Hitbox.SetActive(false);
-            isAttacking = false;
-            if (transform.tag == "Player")
+            if (attackCooldown + comboTime <= 0 && animator.GetInteger("AttackState") > 0)
             {
-                swordTrail.SetActive(false);
+                animator.SetInteger("AttackState", Combo = 0);
             }
-            
+            if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
+                Hitbox.SetActive(true);
+            else if (attackCooldown + comboTime <= 0 && Hitbox.activeSelf)
+            {
+                Hitbox.SetActive(false);
+                isAttacking = false;
+                if (transform.tag == "Player")
+                {
+                    swordTrail.SetActive(false);
+                }
+
+            }
+            attackCooldown -= Time.deltaTime;
         }
 
-        attackCooldown -= Time.deltaTime;
+       
 	}
 
     void OnTriggerEnter(Collider Col)

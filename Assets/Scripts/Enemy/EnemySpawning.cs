@@ -14,7 +14,7 @@ public class EnemySpawning : MonoBehaviour {
         enemiesToSpawn = new List<GameObject>();
 
         //The Enemy Prefab in the Resources folder
-        enemiesToSpawn.Add(Resources.Load<GameObject>("Enemy"));
+        enemiesToSpawn.Add(Resources.Load<GameObject>("Enemy 1"));
 
         for (int i = 0; i < transform.childCount; i++)
         {

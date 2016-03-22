@@ -43,15 +43,17 @@ public class Humanoid : MonoBehaviour
             health = value;
             if (health == 0 && transform.tag == "Enemy")
             {
+                //Play Audio
                 isDead = true;
-                PlayAudio();
                 Invoke("PlayParticle",1f);
                 Invoke("RemoveObject", 2f);
             }
             else if (health <= 0 && transform.tag == "Player")
             {
+                //Play animation
                 cameraScript = playerCamera.GetComponent<CameraScript>();
                 cameraScript.DeathCamera();
+                PlayAudio(1);
             }
         }
     }
@@ -59,10 +61,12 @@ public class Humanoid : MonoBehaviour
     protected void useTool(WeaponScript input)
     {
         weaponList.Add(input);
+        Debug.Log(weaponList[0]);
         if (weaponList.Count > 0)
             weaponList[selectedWeapon % weaponList.Count].attack();
     }
 
+    //Plays particles
     private void PlayParticle()
     {
         Instantiate(Resources.Load<GameObject>("Spirit"), new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
@@ -72,10 +76,10 @@ public class Humanoid : MonoBehaviour
     }
 
     //Play a Death sound once the Enemy / Player dies
-    private void PlayAudio()
+    private void PlayAudio(int input)
     {
         audioSources = GetComponents<AudioSource>();
-        audioSources[1].Play();
+        audioSources[input].Play();
     }
 
     //Remove the object (Enemy or Player) once it dies
@@ -87,13 +91,17 @@ public class Humanoid : MonoBehaviour
     public void Knockback(Transform input)
     {
         //transform.localPosition -= transform.InverseTransformDirection(transform.forward) * 2f;
-        if (transform.name == ("Player"))
+        if (transform.tag == "Player")
         {
             Controller.Move((Vector3.MoveTowards(Vector3.zero, input.forward, 10f)));
+            int randomHitAudio = Random.Range(2,4);
+            PlayAudio(randomHitAudio);
         }
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, input.up, 10f);
+            //Play audio
+            //Test knockback on enemy
         }
     }
 

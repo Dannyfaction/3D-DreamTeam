@@ -10,34 +10,35 @@ public class AttackState : State
     Vector3 aiPos;
     Vector3 playerPos;
     private Enemy enemyScript;
+	private Animator enemyAnimator;
+
+	public override void Enter ()
+	{
+		enemyAnimator.SetBool("isAttacking", true);
+	}
 
     public override void Act()
     {
-        useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
-        /*	
-		 * 	Dealing damgage value 5-10?
-		 * 	Health system van de player koppellen aan AttackState
-		 * 	Proto bevat: Attack, Chase en wander; uiteindelijk: Flee..
-		 * 	De hoop word minder met de dag dat ik wacht..
-		 * 
-		 *
-		 */
+        useTool(GetComponentInChildren<WeaponScript>());
+       
 
         playerPos = targetGetter().transform.position;
         aiPos = transform.position - playerPos;
         transform.position = playerPos + Vector3.Normalize(aiPos) * 5;
+
+		Debug.Log("Attack");
     }
 
     void Start()
     {
         enemyScript = GetComponent<Enemy>();
+		enemyAnimator = GetComponentInChildren<Animator>();
     }
-
-
-
+		
     public override void Reason()
     {
         distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
+		enemyAnimator.SetBool("isAttacking", false);
         if (distanceToTarget > 5)
             //enemyScript.IsMoving = true;
             GetComponent<StateMachine>().SetState(StateID.Chase);

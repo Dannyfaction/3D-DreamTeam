@@ -14,7 +14,7 @@ public class Enemy : Humanoid {
     
     //Which spawnpoints 
     private List<GameObject> waypoints;
-    private Animator characterAnimator;
+    private Animator enemyAnimator;
     public List<GameObject> waypointGetter()
     {
         return waypoints;
@@ -33,70 +33,26 @@ public class Enemy : Humanoid {
 
     void Update()
     {
-        //This is for playing the Enemy Animations
-        if (isMoving)
-        {
-            characterAnimator.SetBool("isWalking", true);
-        }
-        else
-        {
-            characterAnimator.SetBool("isWalking", false);
-        }
-        if (isDead)
-        {
-            characterAnimator.SetBool("isDead", true);
-        }
+		HealthUpdate();
     }
+
+	void HealthUpdate(){
+		if(health == 0){
+			enemyAnimator.SetBool("onDead", true);
+			Destroy(this.gameObject, 4f);
+		}
+		if(Input.GetKeyDown(KeyCode.Alpha1)){
+			health--;
+			Debug.Log(health);
+		}
+	}
 
 	private StateMachine stateMachine;
 	void Start () {
-        characterAnimator = GetComponentInChildren<Animator>();
+        enemyAnimator = GetComponentInChildren<Animator>();
         stateMachine = GetComponent<StateMachine>();
         waypoints = new List<GameObject>();
 
-        //Which speccific waypoints the enemies on specific spawn points have to wander around
-        switch (whichSpawnpoint)
-        {
-            case 0:
-                waypoints.Add(GameObject.Find("Waypoint0"));
-                waypoints.Add(GameObject.Find("Waypoint1"));
-                waypoints.Add(GameObject.Find("Waypoint2"));
-                waypoints.Add(GameObject.Find("Waypoint3"));
-                break;
-            case 1:
-                waypoints.Add(GameObject.Find("Waypoint4"));
-                waypoints.Add(GameObject.Find("Waypoint5"));
-                waypoints.Add(GameObject.Find("Waypoint6"));
-                waypoints.Add(GameObject.Find("Waypoint7"));
-                break;
-            case 2:
-                waypoints.Add(GameObject.Find("Waypoint4"));
-                waypoints.Add(GameObject.Find("Waypoint5"));
-                waypoints.Add(GameObject.Find("Waypoint6"));
-                waypoints.Add(GameObject.Find("Waypoint7"));
-                break;
-            case 3:
-                waypoints.Add(GameObject.Find("Waypoint8"));
-                waypoints.Add(GameObject.Find("Waypoint9"));
-                waypoints.Add(GameObject.Find("Waypoint10"));
-                waypoints.Add(GameObject.Find("Waypoint11"));
-                break;
-            case 4:
-                waypoints.Add(GameObject.Find("Waypoint8"));
-                waypoints.Add(GameObject.Find("Waypoint9"));
-                waypoints.Add(GameObject.Find("Waypoint10"));
-                waypoints.Add(GameObject.Find("Waypoint11"));
-                break;
-            case 5:
-                waypoints.Add(GameObject.Find("Waypoint8"));
-                waypoints.Add(GameObject.Find("Waypoint9"));
-                waypoints.Add(GameObject.Find("Waypoint10"));
-                waypoints.Add(GameObject.Find("Waypoint11"));
-                break;
-
-
-
-        }
 		MakeStates();
 		stateMachine.SetState( StateID.Wandering );
 	}
