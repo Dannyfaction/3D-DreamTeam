@@ -8,11 +8,11 @@ public class WorldEventScript : MonoBehaviour {
 
     CameraEventScript cameraEvents;
 
-    CameraScript camera;
+    //CameraScript camera;
 	// Use this for initialization
 	void Start () {
         cameraEvents = GameObject.Find("WorldEventSystem").GetComponent<CameraEventScript>();
-        camera = playerCam.GetComponent<CameraScript>();
+        //camera = playerCam.GetComponent<CameraScript>();
 	}
 	
 	// Update is called once per frame
@@ -43,42 +43,10 @@ public class WorldEventScript : MonoBehaviour {
         Destroy(GameObject.Find("Event_3"));
     }
 
-
-
-
-
-    /* for into level if needed
-    [SerializeField]
-    private GameObject to_Text_1;
-    [SerializeField]
-    private GameObject to_Text_2;
-    [SerializeField]
-    private GameObject to_Text_3;
-
-    //for Intro level events
-    public void To_Event1()
+    public void Event4()
     {
-        to_Text_1.gameObject.SetActive(true);
-        Invoke("removeObject",3f);
-    }
+        cameraEvents.Event_4();
 
-    public void To_Event2()
-    {
-        to_Text_2.gameObject.SetActive(true);
-        Invoke("removeObject", 3f);
+        Destroy(GameObject.Find("Event_4"));
     }
-
-    public void To_Event3()
-    {
-        to_Text_3.gameObject.SetActive(true);
-        Invoke("removeObject", 3f);
-    }
-
-    private void removeObject()
-    {
-        to_Text_1.gameObject.SetActive(false);
-        to_Text_2.gameObject.SetActive(false);
-        to_Text_3.gameObject.SetActive(false);
-    }
-     */
 }

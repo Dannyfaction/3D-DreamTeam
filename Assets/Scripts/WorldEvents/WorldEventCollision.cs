@@ -31,5 +31,10 @@ public class WorldEventCollision : MonoBehaviour {
         {
             worldEvents.Event3();
         }
+
+        if (other.gameObject.name == "Event_4")
+        {
+            worldEvents.Event4();
+        }
     }
 }

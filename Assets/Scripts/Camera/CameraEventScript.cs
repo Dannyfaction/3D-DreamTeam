@@ -11,8 +11,12 @@ public class CameraEventScript : MonoBehaviour {
     [SerializeField]
     private GameObject event_3_Cam;
     [SerializeField]
+    private GameObject event_4_Cam;
+    [SerializeField]
     private GameObject gate;
-
+    [SerializeField]
+    private GameObject pipeLine;
+   
     private GameObject event_1_position;
     private GameObject event_3_position;
 
@@ -22,8 +26,11 @@ public class CameraEventScript : MonoBehaviour {
     private Animator animatorEvent1;
     private Animator animatorEvent2;
     private Animator animatorEvent3;
+    private Animator animatorEvent4;
 
     private Animator gate_1;
+
+    private Animator pipeLine_animation;
 
     //main camera
     [SerializeField]
@@ -45,6 +52,9 @@ public class CameraEventScript : MonoBehaviour {
         animatorEvent1 = event_1_Cam.GetComponent<Animator>();
         animatorEvent2 = event_2_Cam.GetComponent<Animator>();
         animatorEvent3 = event_3_Cam.GetComponent<Animator>();
+        animatorEvent4 = event_4_Cam.GetComponent<Animator>();
+
+        pipeLine_animation = pipeLine.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -67,7 +77,7 @@ public class CameraEventScript : MonoBehaviour {
         animatorEvent1.SetBool("Event_1_Back", true);
         gate_1.SetBool("Door_Close", true);
         animatorEvent1.SetBool("Event_1_Go", false);
-        Invoke("Back_To_Player", 9f);
+        Invoke("Back_To_Player", 7f);
     }
 
     // Event 2 (Hallway event)
@@ -88,14 +98,25 @@ public class CameraEventScript : MonoBehaviour {
         event_3_Cam.gameObject.SetActive(true);
 
         animatorEvent3.SetBool("Event_3", true);
-        Invoke("Event_3_Back", 2f);
+        Invoke("Back_To_Player", 4f);
 
     }
 
-    private void Event_3_Back()
+    //Event 4 (the lower part of the level and pipe falling)
+    public void Event_4()
     {
-        player.transform.position = event_3_position.transform.position;
-        Invoke("Back_To_Player", 6f);
+        playerCam.gameObject.SetActive(false);
+        event_4_Cam.gameObject.SetActive(true);
+
+        animatorEvent4.SetBool("Cam_4", true);
+        Invoke("Event_4_Back", 5f);
+
+    }
+
+    private void Event_4_Back()
+    {
+        pipeLine_animation.SetBool("PipeDown", true);
+        Invoke("Back_To_Player", 2f);
     }
 
     //Closing all events and going back to player
@@ -103,6 +124,7 @@ public class CameraEventScript : MonoBehaviour {
         event_1_Cam.gameObject.SetActive(false);
         event_2_Cam.gameObject.SetActive(false);
         event_3_Cam.gameObject.SetActive(false);
+        event_4_Cam.gameObject.SetActive(false);
         playerCam.gameObject.SetActive(true);
     }
 }

@@ -7,12 +7,19 @@ public class CameraScript : MonoBehaviour
     ControllerScript Joystick;
 
     [SerializeField] private GameObject target = null;
+    [SerializeField]
+    private Transform cameraLerpedPosition;
+    [SerializeField]
+    private GameObject player;
 
     //Camera speed
     [SerializeField] private float speed;
     private float look;
     private float lookUp;
     private float upDown;
+
+    [SerializeField]
+    private Transform cameraPositionTarget;
 
     private Vector3 initialPosition;
 
@@ -35,7 +42,7 @@ public class CameraScript : MonoBehaviour
         //Focuses the Camera on the Player
         if (transform.Find("Main Camera").gameObject.active)
         {
-            Camera.main.transform.LookAt(target.transform);
+            Camera.main.transform.LookAt(cameraLerpedPosition.transform);
         }
 
         //From the Inputmanager
@@ -54,7 +61,7 @@ public class CameraScript : MonoBehaviour
         {
             transform.RotateAround(target.transform.position, Vector3.down, Time.deltaTime * speed);
         }
-        Debug.Log(lookUp);
+
         //For looking up and down with the camera
         if (lookUp == -1 & transform.position.y > target.transform.position.y - 10)
         {
@@ -85,11 +92,13 @@ public class CameraScript : MonoBehaviour
             transform.Translate(0, upDown, 0);
         }
 
+        /*
         if (Input.GetKeyDown("b"))
         {
             Character character = GameObject.Find("N_ThirdPersonPlayer").GetComponent<Character>();
             character.Health -= 20;
         }
+        */
 
 
         //Pans the camera around the (dead)Player
@@ -107,29 +116,8 @@ public class CameraScript : MonoBehaviour
 
     void LateUpdate()
     {
-        Transform cameraPositionTarget = GameObject.Find("N_ThirdPersonPlayer").transform.Find("CameraPositionTarget");
-        // Calculate the current rotation angles
-        float wantedRotationAngle = target.transform.eulerAngles.y;
-        float wantedHeight = target.transform.position.y + 3f;
-
-        float currentRotationAngle = transform.eulerAngles.y;
-        float currentHeight = transform.position.y;
-
-        // Damp the rotation around the y-axis
-        currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, 0.6f * Time.deltaTime);
-
-        // Damp the height
-        currentHeight = Mathf.Lerp(currentHeight, wantedHeight, 2f * Time.deltaTime);
-
-        // Convert the angle into a rotation
-        Quaternion currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
-
-        // Set the position of the camera on the x-z plane to:
-        // distance meters behind the target
-        //transform.position -= currentRotation * Vector3.forward * 10f;
-
-        transform.position = Vector3.Lerp(transform.position, new Vector3(cameraPositionTarget.position.x, cameraPositionTarget.position.y, cameraPositionTarget.position.z),5f * Time.fixedDeltaTime); 
-        transform.rotation = Quaternion.Euler(0, cameraPositionTarget.eulerAngles.y, 0);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(cameraPositionTarget.position.x, cameraPositionTarget.position.y, cameraPositionTarget.position.z),5f * Time.fixedDeltaTime);
+        Debug.DrawRay(player.transform.position, player.transform.forward, Color.blue);
     }
 
     //camera movement for gameover

@@ -23,19 +23,27 @@ public class PlayerControl : Character
 
     void FixedUpdate()
     {
-        Move_X = Joystick.LeftStick_X * moveSpeed;
-        Move_y = Joystick.LeftStick_Y * moveSpeed;
+        Move_X = Joystick.LeftStick_X * movementSpeed;
+        Move_y = Joystick.LeftStick_Y * movementSpeed;
 
         inputDelta = new Vector3(Move_X, 0, -Move_y);
 
         // Read the Inputs
-        inputDelta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        inputDelta = new Vector3(Input.GetAxisRaw( "Horizontal" ), 0, Input.GetAxisRaw( "Vertical" ));
 
         // Give the commands
-        Move(transform.position - transform.TransformDirection(inputDelta * -1));
+        //Move(transform.position - transform.TransformDirection(inputDelta * -1));
+		
+		Move (transform.position - Vector3.Scale(camera.TransformDirection(inputDelta * -1), new Vector3(1, 0, 1)).normalized);
 
-        if (Input.GetButtonDown("Fire1"))
-            useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
+        if (Input.GetButtonDown("Fire1")){
+            //useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
+			useSelectedItem (0);
+		}
+
+		if (Input.GetKeyDown(KeyCode.C)){
+			SelectedItem += 1;
+		}
 
         //Pause the game once start button on controller has been pressed
         //For Controller Use
