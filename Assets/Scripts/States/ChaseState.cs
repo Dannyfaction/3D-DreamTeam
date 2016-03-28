@@ -7,7 +7,7 @@ public class ChaseState : State {
 	private float chaseSpeed = 10;
     private WeaponScript weaponScript;
     //Attack Range
-    private float GivenDistanceToTarget = 5;
+    private float GivenDistanceToTarget = 7.5f;
 	private Animator enemyAnimator;
 
     void Start()
@@ -28,7 +28,7 @@ public class ChaseState : State {
         }
         */
 
-		if(agent.velocity != Vector3.zero){
+		if(NavMeshAgentGetter().velocity != Vector3.zero){
 			Debug.Log("Moving");
 			enemyAnimator.SetBool("isMoving", true);
 		}

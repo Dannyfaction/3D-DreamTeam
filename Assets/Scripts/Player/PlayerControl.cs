@@ -16,7 +16,7 @@ public class PlayerControl : Character
     void Start()
     {
         Joystick = GetComponent<ControllerScript>();
-        camera = Camera.main.transform.parent.transform;
+        camera = Camera.main.transform;
         pauseObject = GameObject.Find("PauseMenu").transform.Find("Menu").gameObject;
         base.Start();
     }

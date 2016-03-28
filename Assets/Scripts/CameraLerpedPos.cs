@@ -13,6 +13,6 @@ public class CameraLerpedPos : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y+5f, target.position.z), 10f * Time.fixedDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y+7.5f, target.position.z), 10f * Time.fixedDeltaTime);
     }
 }

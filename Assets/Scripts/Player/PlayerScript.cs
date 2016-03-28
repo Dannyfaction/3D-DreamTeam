@@ -72,7 +72,7 @@ public class PlayerScript : Humanoid {
         //Action Input detection
         if (Input.GetButtonDown("Fire1")) //[NOTE] if statement Will be replaced by a keybinding class when it's availible
         {
-            useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
+            useTool();
         }
 
         if (Input.GetAxis("RightTrigger") == 1)

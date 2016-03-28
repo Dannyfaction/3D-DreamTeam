@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -7,11 +8,51 @@ public class Character : MonoBehaviour
     CharacterController controller;
     Animator animator;
 
+    private float hitCooldown;
+    /*
+    public float HitCooldown
+    {
+        get { return hitCooldown; }
+    }
+    */
+
+    GameObject redFlashObject;
+    Image image;
+
+    private AudioSource[] audioSources;
+
     private int currentCheckpoint = 0;
     public int CurrentCheckpoint
     {
         get { return currentCheckpoint; }
         set { currentCheckpoint = value; }
+    }
+
+    [SerializeField] private float health;
+    public float Health
+    {
+        get { return health; }
+        set
+        {
+            if (hitCooldown <= 0)
+            {
+                health = value;
+                if (health == 0 && transform.tag == "Enemy")
+                {
+                    //Play Audio
+                    //isDead = true;
+                    //Invoke("PlayParticle", 1f);
+                    //Invoke("RemoveObject", 2f);
+                }
+                else if (health <= 0 && transform.tag == "Player")
+                {
+                    //Play animation
+                    //cameraScript = playerCamera.GetComponent<CameraScript>();
+                    //cameraScript.DeathCamera();
+                    //PlayAudio(1);
+                }
+            }
+        }
     }
 
 
@@ -47,9 +88,12 @@ public class Character : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-		
-		// Making a clone of the weapon to prevent you from changing the prefab when in run time
-		for (int i = 0; i < items.Length; i++) {
+
+        redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
+        image = redFlashObject.GetComponent<Image>();
+
+        // Making a clone of the weapon to prevent you from changing the prefab when in run time
+        for (int i = 0; i < items.Length; i++) {
 			if (items [i] != null)
 				giveItem (Instantiate (items [i]), i);
 		}
@@ -59,6 +103,7 @@ public class Character : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        hitCooldown--;
 		if (items [selectedItem])
 			items [selectedItem].UpdateTool();
 		
@@ -76,6 +121,10 @@ public class Character : MonoBehaviour
         moveDirection -= Vector3.Scale(moveDirection, new Vector3(0.1f, 0, Mathf.Abs(moveDirection.sqrMagnitude - 2f) * 0.01f));
         controller.Move(Physics.gravity * Time.deltaTime);
 
+        if (image.color.a > 0)
+        {
+            image.color = new Color(255,0,0,image.color.a-0.005f);
+        }
 
 		/*
         if (health == 0)
@@ -137,7 +186,43 @@ public class Character : MonoBehaviour
 			items [selectedItem].use (transform, toolMove);
 	}
 
-	/*
+    public void Knockback(Transform input)
+    {
+        //transform.localPosition -= transform.InverseTransformDirection(transform.forward) * 2f;
+        if (hitCooldown <= 0)
+        {
+            if (transform.tag == "Player")
+            {
+                controller.Move((Vector3.MoveTowards(Vector3.zero, input.forward, 10f)));
+                int randomHitAudio = Random.Range(1, 3);
+                FlashScreenRed();
+                PlayAudio(randomHitAudio);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, input.up, 10f);
+                //Play audio
+                //Test knockback on enemy
+            }
+        }
+        hitCooldown = 50;
+    }
+
+    private void FlashScreenRed()
+    {
+        GameObject redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
+        Image image = redFlashObject.GetComponent<Image>();
+        image.color = new Color(255f,0f,0f,0.25f);
+    }
+
+    //Play a Death sound once the Enemy / Player dies
+    private void PlayAudio(int input)
+    {
+        audioSources = GetComponents<AudioSource>();
+        audioSources[input].Play();
+    }
+
+    /*
     protected void Move(Vector3 inputDelta)
     {
 

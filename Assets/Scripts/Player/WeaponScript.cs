@@ -45,12 +45,12 @@ public class WeaponScript : MonoBehaviour {
 
     public void attack()
     {
-        if (attackCooldown <= 0 || animator.GetInteger("AttackState") == 0)
+        if (attackCooldown <= 0)
         {
             attackCooldown = maxAttackCooldown;
             Combo++;
             isAttacking = true;
-            animator.SetInteger("AttackState", Combo);
+            //animator.SetInteger("AttackState", Combo);
             if (transform.tag == "Player")
             {
                 swordTrail.SetActive(true);
@@ -60,25 +60,31 @@ public class WeaponScript : MonoBehaviour {
 
 	void Update()
 	{
+        /*
         if (transform.tag == "Player")
         {
-            if (attackCooldown + comboTime <= 0 && animator.GetInteger("AttackState") > 0)
-            {
-                animator.SetInteger("AttackState", Combo = 0);
-            }
             if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
                 Hitbox.SetActive(true);
             else if (attackCooldown + comboTime <= 0 && Hitbox.activeSelf)
             {
                 Hitbox.SetActive(false);
-                isAttacking = false;
-                if (transform.tag == "Player")
-                {
-                    swordTrail.SetActive(false);
-                }
+                //isAttacking = false;
+                swordTrail.SetActive(false);
 
             }
             attackCooldown -= Time.deltaTime;
+        }
+        */
+        if (transform.tag == "Enemy")
+        {
+            if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
+                Hitbox.SetActive(true);
+            else if (attackCooldown + comboTime <= 0 && Hitbox.activeSelf)
+            {
+                Hitbox.SetActive(false);
+                //isAttacking = false;
+
+            }
         }
 
        
@@ -86,9 +92,16 @@ public class WeaponScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider Col)
     {
-        Humanoid hum = Col.GetComponent<Humanoid>();
+        Debug.Log(Col);
+        Character character = Col.GetComponent<Character>();
         AudioSource hitSound = Col.GetComponent<AudioSource>();
+        if (Col.tag == "Player")
+        {
+            character.Health -= attackDamage;
+            character.Knockback(transform.root);
 
+        }
+        /*
         if (hum && !Col.CompareTag(transform.tag))
         {
             hum.Health -= attackDamage;
@@ -103,5 +116,6 @@ public class WeaponScript : MonoBehaviour {
             hum.Knockback(transform);
             hitSound.Play();
         }
+        */
     }
 }

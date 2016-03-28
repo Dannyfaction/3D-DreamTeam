@@ -11,6 +11,7 @@ public class AttackState : State
     Vector3 playerPos;
     private Enemy enemyScript;
 	private Animator enemyAnimator;
+    private WeaponScript weaponScript;
 
 	public override void Enter ()
 	{
@@ -19,20 +20,21 @@ public class AttackState : State
 
     public override void Act()
     {
-        useTool(GetComponentInChildren<WeaponScript>());
-       
-
+        useTool();
         playerPos = targetGetter().transform.position;
         aiPos = transform.position - playerPos;
-        transform.position = playerPos + Vector3.Normalize(aiPos) * 5;
-
-		Debug.Log("Attack");
+        //transform.position = playerPos + Vector3.Normalize(aiPos) * 5;
+        enemyAnimator.SetBool("isAttacking", true);
+        NavMeshAgentVelocitySetter(Vector3.zero);
     }
 
     void Start()
     {
         enemyScript = GetComponent<Enemy>();
 		enemyAnimator = GetComponentInChildren<Animator>();
+        weaponScript = GetComponentInChildren<WeaponScript>();
+        weaponList.Add(weaponScript);
+        //SetWeapon = GetComponentInChildren<WeaponScript>();
     }
 		
     public override void Reason()
@@ -41,6 +43,7 @@ public class AttackState : State
 		enemyAnimator.SetBool("isAttacking", false);
         if (distanceToTarget > 5)
             //enemyScript.IsMoving = true;
+
             GetComponent<StateMachine>().SetState(StateID.Chase);
     }
 }

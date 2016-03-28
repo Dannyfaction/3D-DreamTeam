@@ -9,12 +9,19 @@ public class Humanoid : MonoBehaviour
     private ParticleSystem[] particleSystems;
     private AudioSource[] audioSources;
 
+    /*
+    protected WeaponScript weaponScript;
+    public WeaponScript SetWeapon
+    {
+        set { weaponScript = value; }
+    }
+    */
 
     //The Character's Model, (not collision or holder)
     [SerializeField] protected GameObject CharacterModel;
 
     [SerializeField] protected List<WeaponScript> weaponList = new List<WeaponScript>();
-    protected int selectedWeapon = 0;
+    protected int selectedWeapon = 1;
 
     //The health of the Humanoid
     [SerializeField] protected float health = 100;
@@ -58,10 +65,10 @@ public class Humanoid : MonoBehaviour
         }
     }
 
-    protected void useTool(WeaponScript input)
+    protected void useTool()
     {
-        weaponList.Add(input);
-        Debug.Log(weaponList[0]);
+        //weaponList.Add(GetComponentInChildren<WeaponScript>());
+        //Debug.Log(weaponList[0]);
         if (weaponList.Count > 0)
             weaponList[selectedWeapon % weaponList.Count].attack();
     }

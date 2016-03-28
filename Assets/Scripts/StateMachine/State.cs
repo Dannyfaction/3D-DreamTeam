@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class State : Humanoid {
 
     //This is in the Unity Inspector for setting the NavMeshAgent
-	public NavMeshAgent agent;
+	[SerializeField] private NavMeshAgent agent;
 
     //The target for the Enemies (The Player in this case)
 	private GameObject target;
@@ -27,6 +27,16 @@ public abstract class State : Humanoid {
         agent.destination = input;
     }
 
+    public NavMeshAgent NavMeshAgentGetter()
+    {
+        return agent;
+    }
+
+    public void NavMeshAgentVelocitySetter(Vector3 input)
+    {
+        agent.velocity = input;
+    }
+
 	public virtual void Enter ()
 	{
 
@@ -40,6 +50,11 @@ public abstract class State : Humanoid {
 	public abstract void Act ();
 	
 	public abstract void Reason ();
+
+    void OnEnable()
+    {
+        //agent.velocity = 10f;
+    }
 	
 }
 
