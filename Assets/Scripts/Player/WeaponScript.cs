@@ -10,12 +10,14 @@ public class WeaponScript : MonoBehaviour {
     float maxAttackCooldown = 4;
     float attackCooldown = 0;
 
+    /*
     private bool isAttacking;
     public bool isAttackingGetSet
     {
         get { return isAttacking; }
         set { isAttacking = value; }
     }
+    */
 
     [SerializeField] float attackDamage = 20;
     private GameObject swordTrail;
@@ -49,12 +51,7 @@ public class WeaponScript : MonoBehaviour {
         {
             attackCooldown = maxAttackCooldown;
             Combo++;
-            isAttacking = true;
-            //animator.SetInteger("AttackState", Combo);
-            if (transform.tag == "Player")
-            {
-                swordTrail.SetActive(true);
-            }
+            //isAttacking = true;
         }
     }
 
@@ -92,7 +89,6 @@ public class WeaponScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider Col)
     {
-        Debug.Log(Col);
         Character character = Col.GetComponent<Character>();
         AudioSource hitSound = Col.GetComponent<AudioSource>();
         if (Col.tag == "Player")

@@ -29,7 +29,6 @@ public class ChaseState : State {
         */
 
 		if(NavMeshAgentGetter().velocity != Vector3.zero){
-			Debug.Log("Moving");
 			enemyAnimator.SetBool("isMoving", true);
 		}
 

@@ -15,7 +15,7 @@ public class AttackState : State
 
 	public override void Enter ()
 	{
-		enemyAnimator.SetBool("isAttacking", true);
+		//enemyAnimator.SetBool("isAttacking", true);
 	}
 
     public override void Act()
@@ -40,10 +40,10 @@ public class AttackState : State
     public override void Reason()
     {
         distanceToTarget = Vector3.Distance(targetGetter().transform.position, transform.position);
-		enemyAnimator.SetBool("isAttacking", false);
+		//enemyAnimator.SetBool("isAttacking", false);
         if (distanceToTarget > 5)
             //enemyScript.IsMoving = true;
-
-            GetComponent<StateMachine>().SetState(StateID.Chase);
+            enemyAnimator.SetBool("isAttacking", false);
+        GetComponent<StateMachine>().SetState(StateID.Chase);
     }
 }

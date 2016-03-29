@@ -49,7 +49,10 @@ public class MeleeWeapon : Item {
 			animator.SetInteger ("AttackState", attackAnimation);
 			animator.SetTrigger ("Attack");
 
+            
+
 			foreach (RaycastHit hit in hits) {
+                //Debug.Log(hit.transform.name);
 				if (hit.transform != caster.transform && hit.transform.gameObject.GetComponent <Humanoid> ())
 					hit.transform.gameObject.GetComponent <Humanoid> ().Health -= damage;
 			}
@@ -139,7 +142,9 @@ public class MeleeWeapon : Item {
 				
 			} else {
 				//Debug.Log ("No combos left");
+                /*
 				if (ActiveHitbox != null) Debug.Log (Time.time + " ~ " + ActiveHitbox.duration + " + " + ActiveHitbox.comboTime  + " = " + (ActiveHitbox.duration + activeHitbox.comboTime));
+                */
 			}
 		}
 	}

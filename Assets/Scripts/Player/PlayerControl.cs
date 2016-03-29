@@ -13,6 +13,13 @@ public class PlayerControl : Character
     private float Move_X;
     private float Move_y;
 
+    private int currentCheckpoint = 0;
+    public int CurrentCheckpoint
+    {
+        get { return currentCheckpoint; }
+        set { currentCheckpoint = value; }
+    }
+
     void Start()
     {
         Joystick = GetComponent<ControllerScript>();
@@ -23,6 +30,11 @@ public class PlayerControl : Character
 
     void FixedUpdate()
     {
+        if (Health == 0)
+        {
+            Invoke("RespawnCharacter", 8f);
+        }
+
         Move_X = Joystick.LeftStick_X * movementSpeed;
         Move_y = Joystick.LeftStick_Y * movementSpeed;
 
@@ -41,9 +53,11 @@ public class PlayerControl : Character
 			useSelectedItem (0);
 		}
 
+        /*
 		if (Input.GetKeyDown(KeyCode.C)){
 			SelectedItem += 1;
 		}
+        */
 
         //Pause the game once start button on controller has been pressed
         //For Controller Use
@@ -77,5 +91,37 @@ public class PlayerControl : Character
 
         // Fire Fixed update
         base.FixedUpdate();
+    }
+
+    private void RespawnCharacter()
+    {
+        Vector3 checkpointPosition;
+        Quaternion checkpointRotation;
+        switch (currentCheckpoint)
+        {
+            case 1:
+                checkpointPosition = new Vector3(-394.39f, 0, -105f);
+                checkpointRotation = Quaternion.identity;
+                break;
+            case 2:
+                checkpointPosition = new Vector3(-280.2f, 0, 15.52f);
+                checkpointRotation = Quaternion.Euler(0, 90, 0);
+                break;
+            case 3:
+                checkpointPosition = new Vector3(-58.8f, 0, -31.9f);
+                checkpointRotation = Quaternion.Euler(0, 90, 0);
+                break;
+            default:
+                checkpointPosition = new Vector3(-605.14f, 0f, -272f);
+                checkpointRotation = Quaternion.Euler(0, 90, 0);
+                break;
+        }
+        transform.position = checkpointPosition;
+        transform.rotation = checkpointRotation;
+
+        ///////////////////////////////////////////////
+        //cameraScript.CameraReset(checkpointRotation);
+        //health = 100;
+        //Fix animations
     }
 }

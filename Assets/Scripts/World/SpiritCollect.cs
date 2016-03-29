@@ -10,7 +10,7 @@ public class SpiritCollect : MonoBehaviour {
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("N_ThirdPersonPlayer");
     }
 
     void Update() {

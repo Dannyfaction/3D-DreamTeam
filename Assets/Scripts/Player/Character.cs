@@ -21,13 +21,6 @@ public class Character : MonoBehaviour
 
     private AudioSource[] audioSources;
 
-    private int currentCheckpoint = 0;
-    public int CurrentCheckpoint
-    {
-        get { return currentCheckpoint; }
-        set { currentCheckpoint = value; }
-    }
-
     [SerializeField] private float health;
     public float Health
     {
@@ -125,46 +118,6 @@ public class Character : MonoBehaviour
         {
             image.color = new Color(255,0,0,image.color.a-0.005f);
         }
-
-		/*
-        if (health == 0)
-        {
-            Invoke("RespawnCharacter", 8f);
-        }
-        //Debug.Log (moveDirection.sqrMagnitude);
-		*/
-    }
-
-    private void RespawnCharacter()
-    {
-        Vector3 checkpointPosition;
-        Quaternion checkpointRotation;
-        switch (currentCheckpoint)
-        {
-            case 1:
-                checkpointPosition = new Vector3(-394.39f, 0, -105f);
-                checkpointRotation = Quaternion.identity;
-                break;
-            case 2:
-                checkpointPosition = new Vector3(-280.2f, 0, 15.52f);
-                checkpointRotation = Quaternion.Euler(0, 90, 0);
-                break;
-            case 3:
-                checkpointPosition = new Vector3(-58.8f, 0, -31.9f);
-                checkpointRotation = Quaternion.Euler(0, 90, 0);
-                break;
-            default:
-                checkpointPosition = new Vector3(-605.14f, 0f, -272f);
-                checkpointRotation = Quaternion.Euler(0, 90, 0);
-                break;
-        }
-        transform.position = checkpointPosition;
-        transform.rotation = checkpointRotation;
-
-        ///////////////////////////////////////////////
-        //cameraScript.CameraReset(checkpointRotation);
-        //health = 100;
-        //Fix animations
     }
 	
 	// Move the character towards a world position or waypoint
