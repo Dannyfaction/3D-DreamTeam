@@ -121,7 +121,7 @@ public class PlayerControl : Character
 
         ///////////////////////////////////////////////
         //cameraScript.CameraReset(checkpointRotation);
-        //health = 100;
+        Health = 100;
         //Fix animations
     }
 }

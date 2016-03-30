@@ -37,14 +37,18 @@ public class Enemy : Humanoid {
     }
 
 	void HealthUpdate(){
-		if(health == 0){
-			enemyAnimator.SetBool("onDead", true);
-			Destroy(this.gameObject, 4f);
-		}
-		if(Input.GetKeyDown(KeyCode.Alpha1)){
-			health--;
-			Debug.Log(health);
-		}
+        if (health == 0 && !enemyAnimator.GetBool("isDead"))
+        {
+            enemyAnimator.SetBool("isDead", true);
+            enemyAnimator.SetTrigger("onDead");
+            Destroy(this.gameObject, 4f);
+        }
+        if (health == 0)
+        {
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            //agent.velocity = Vector3.zero;
+            agent.destination = transform.position;
+        }
 	}
 
 	private StateMachine stateMachine;

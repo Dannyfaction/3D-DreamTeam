@@ -32,11 +32,11 @@ public class ChaseState : State {
 			enemyAnimator.SetBool("isMoving", true);
 		}
 
-		if(health >= 0){
+		if(health > 0){
         //Setting the speed and Destination on the Agent Manager for the NavMash Pathfinding
         NavMeshAgentSpeedSetter(chaseSpeed);
         NavMeshAgentDestinationSetter(targetGetter().transform.position);
-		}
+        }
 	}
 	
 	public override void Reason(){

@@ -72,6 +72,7 @@ public class WeaponScript : MonoBehaviour {
             attackCooldown -= Time.deltaTime;
         }
         */
+        /*
         if (transform.tag == "Enemy")
         {
             if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
@@ -83,6 +84,7 @@ public class WeaponScript : MonoBehaviour {
 
             }
         }
+        */
 
        
 	}

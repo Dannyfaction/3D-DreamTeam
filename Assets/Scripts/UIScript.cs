@@ -14,9 +14,9 @@ public class UIScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float health = playerScript.Health;
-        if (healthObject.transform.localScale.x > 0)
-        {
+        //if (healthObject.transform.localScale.x > 0)
+        //{
             healthObject.transform.localScale = new Vector3((health / 100), 1, 1);
-        }
+        //}
     }
 }

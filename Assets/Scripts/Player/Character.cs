@@ -116,7 +116,7 @@ public class Character : MonoBehaviour
 
         if (image.color.a > 0)
         {
-            image.color = new Color(255,0,0,image.color.a-0.005f);
+            image.color = new Color(100f,0f,0f,image.color.a-0.015f);
         }
     }
 	
@@ -165,7 +165,7 @@ public class Character : MonoBehaviour
     {
         GameObject redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
         Image image = redFlashObject.GetComponent<Image>();
-        image.color = new Color(255f,0f,0f,0.25f);
+        image.color = new Color(100f,0f,0f,1f);
     }
 
     //Play a Death sound once the Enemy / Player dies

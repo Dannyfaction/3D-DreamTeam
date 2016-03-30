@@ -44,7 +44,7 @@ public class MeleeWeapon : Item {
 
 			//Debug.Log ("Doing combo: " + size);
 
-			RaycastHit[] hits = Physics.BoxCastAll (caster.position + caster.TransformDirection(offset), size/2, Vector3.forward, Quaternion.LookRotation(caster.forward));
+			RaycastHit[] hits = Physics.BoxCastAll (caster.position + caster.TransformDirection(offset), size/2, caster.forward,caster.transform.rotation,size.z);
 
 			animator.SetInteger ("AttackState", attackAnimation);
 			animator.SetTrigger ("Attack");
@@ -52,9 +52,13 @@ public class MeleeWeapon : Item {
             
 
 			foreach (RaycastHit hit in hits) {
-                //Debug.Log(hit.transform.name);
-				if (hit.transform != caster.transform && hit.transform.gameObject.GetComponent <Humanoid> ())
-					hit.transform.gameObject.GetComponent <Humanoid> ().Health -= damage;
+                if (hit.transform != caster.transform && hit.transform.gameObject.GetComponent<Humanoid>())
+                {
+                    Debug.Log(hit.transform.name);
+                    hit.transform.gameObject.GetComponent<Humanoid>().Health -= damage;
+                    hit.transform.gameObject.GetComponent<Humanoid>().Knockback();
+
+                }
 			}
 
 			//if (hits.Length > 0)
@@ -100,10 +104,10 @@ public class MeleeWeapon : Item {
 
 		// Check if there is a move within moves's index and if there isn't a move already being used
 		if (toolMove < moves.Length && (toolMove == currentMoveIndex || (ActiveHitbox == null || Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime))) {
-			//Debug.Log ("Firing Move");
+            //Debug.Log ("Firing Move");
 
-			// Check if the move is ready to use, If so, make it the current attack
-			if (moves [toolMove].cooldown < Time.time && (ActiveHitbox == null || Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime)) {
+            // Check if the move is ready to use, If so, make it the current attack
+            if (ActiveHitbox == null || (Time.time > moves[toolMove].cooldown && Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime)) {
 				//Debug.Log ("Resetting move");
 
 				// Reset the combo
@@ -135,10 +139,8 @@ public class MeleeWeapon : Item {
 				}
 
 
-				activeMove.cooldown = activeMove.maxCooldown + Time.time + activeHitbox.duration + activeHitbox.comboTime;
-
-				if (!ActiveHitbox.combo)
-					ActiveHitbox = null;
+				activeMove.cooldown = activeMove.maxCooldown + Time.time + activeHitbox.comboTime;
+                
 				
 			} else {
 				//Debug.Log ("No combos left");
