@@ -17,11 +17,7 @@ public class SpiritCollect : MonoBehaviour {
     }
 
     void Update() {
-<<<<<<< HEAD
         if (speed < 25f)
-=======
-        if (speed < 20f)
->>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
         {
             speed += 0.1f;
         }
@@ -41,10 +37,7 @@ public class SpiritCollect : MonoBehaviour {
                 particleSystems[0].Stop();
                 particleSystems[1].Stop();
                 Destroy(transform.Find("ENEMY Spirit Ball Shine").gameObject);
-<<<<<<< HEAD
                 Destroy(transform.Find("Point light").gameObject);
-=======
->>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
                 Invoke("DestroyObject",3f);
                 isDestroyed = true;
             }

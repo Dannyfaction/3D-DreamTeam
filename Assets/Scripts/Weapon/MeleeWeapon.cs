@@ -25,43 +25,10 @@ public class MeleeWeapon : Item {
 		public bool combo; // If it should continue on the next hitbox instead of starting at 0 hitbox again
 		public float comboTime; // the duration to trigger the net combo attack
 		public int attackAnimation; // the ID of the animation for the animator controller
-<<<<<<< HEAD
 		public int swingSoundID; // the ID of the sound it should play once the hitbox is active
 		public int hitSoundID; // the ID of the sound it should play once the hitbox is active
 		[HideInInspector] public bool playingSwingSound; // To make sure the sound doesn't play multible times
 		[HideInInspector] public bool playingHitSound; // To make sure the sound doesn't play multible times
-=======
-
-
-		public GameObject model;
-
-		public void UpdateHitbox (Transform caster, Animator animator) {
-
-			//Debug.Log ("Doing combo: " + size);
-
-			RaycastHit[] hits = Physics.BoxCastAll (caster.position + caster.TransformDirection(offset), size/2, caster.forward,caster.transform.rotation,size.z);
-
-			animator.SetInteger ("AttackState", attackAnimation);
-			animator.SetTrigger ("Attack");
-
-            
-
-			foreach (RaycastHit hit in hits) {
-                if (hit.transform != caster.transform && hit.transform.gameObject.GetComponent<Humanoid>())
-                {
-                    Debug.Log(hit.transform.name);
-                    hit.transform.gameObject.GetComponent<Humanoid>().Health -= damage;
-                    hit.transform.gameObject.GetComponent<Humanoid>().Knockback();
-
-                }
-			}
-
-			//if (hits.Length > 0)
-			//	Debug.Log (hits [0].transform.name);
-			//else
-			//	Debug.Log ("No hits");
-		}
->>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
 	}
 
 	// The hixboxes from the attack move to check what/where to damage
@@ -162,29 +129,6 @@ public class MeleeWeapon : Item {
 		}
 	}
 
-<<<<<<< HEAD
-=======
-	// Tell the character you want it to use this tool and what move of his weapon he should use
-	public override void use (Transform caster, int toolMove) {
-
-
-		// Check if there is a move within moves's index and if there isn't a move already being used
-		if (toolMove < moves.Length && (toolMove == currentMoveIndex || (ActiveHitbox == null || Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime))) {
-            //Debug.Log ("Firing Move");
-
-            // Check if the move is ready to use, If so, make it the current attack
-            if (ActiveHitbox == null || (Time.time > moves[toolMove].cooldown && Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime)) {
-				//Debug.Log ("Resetting move");
-
-				// Reset the combo
-				currentHitboxIndex = 0;
-
-
-				// (Re)set the active hitbox and move
-				activeMove = moves [toolMove];
-				ActiveHitbox = activeMove.hitboxes [currentHitboxIndex];
-				ActiveHitbox.UpdateHitbox (caster, animator);
->>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
 
 
 	//Tell the animator to play an animation
@@ -205,7 +149,6 @@ public class MeleeWeapon : Item {
 			activeMove.caster = caster;
 			activeMove.CurrentHitboxIndex = 0;
 
-<<<<<<< HEAD
 			FireAnimation ();
 		}
 
@@ -215,16 +158,6 @@ public class MeleeWeapon : Item {
 				activeMove.CurrentHitboxIndex++;
 			
 				FireAnimation ();
-=======
-				activeMove.cooldown = activeMove.maxCooldown + Time.time + activeHitbox.comboTime;
-                
-				
-			} else {
-				//Debug.Log ("No combos left");
-                /*
-				if (ActiveHitbox != null) Debug.Log (Time.time + " ~ " + ActiveHitbox.duration + " + " + ActiveHitbox.comboTime  + " = " + (ActiveHitbox.duration + activeHitbox.comboTime));
-                */
->>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
 			}
 		}
 	}
