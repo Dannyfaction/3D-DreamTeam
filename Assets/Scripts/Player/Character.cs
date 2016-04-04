@@ -103,7 +103,16 @@ public class Character : MonoBehaviour
 		transform.Rotate (new Vector3(0, localMove.x * 2, 0) * movementSpeed);
 		
         moveDirection -= Vector3.Scale(moveDirection, new Vector3(0.1f, 0, Mathf.Abs(moveDirection.sqrMagnitude - 2f) * 0.01f));
+<<<<<<< HEAD
         controller.Move(Physics.gravity * Time.deltaTime * 3f);
+=======
+        controller.Move(Physics.gravity * Time.deltaTime);
+
+        if (image.color.a > 0)
+        {
+            image.color = new Color(100f,0f,0f,image.color.a-0.015f);
+        }
+>>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
     }
 	
 	// Move the character towards a world position or waypoint
@@ -124,4 +133,63 @@ public class Character : MonoBehaviour
 		if (items [selectedItem])
 			items [selectedItem].use (transform, toolMove);
 	}
+<<<<<<< HEAD
+=======
+
+    public void Knockback(Transform input)
+    {
+        //transform.localPosition -= transform.InverseTransformDirection(transform.forward) * 2f;
+        if (hitCooldown <= 0)
+        {
+            if (transform.tag == "Player")
+            {
+                controller.Move((Vector3.MoveTowards(Vector3.zero, input.forward, 10f)));
+                int randomHitAudio = Random.Range(1, 3);
+                FlashScreenRed();
+                PlayAudio(randomHitAudio);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, input.up, 10f);
+                //Play audio
+                //Test knockback on enemy
+            }
+        }
+        hitCooldown = 50;
+    }
+
+    private void FlashScreenRed()
+    {
+        GameObject redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
+        Image image = redFlashObject.GetComponent<Image>();
+        image.color = new Color(100f,0f,0f,1f);
+    }
+
+    //Play a Death sound once the Enemy / Player dies
+    private void PlayAudio(int input)
+    {
+        audioSources = GetComponents<AudioSource>();
+        audioSources[input].Play();
+    }
+
+    /*
+    protected void Move(Vector3 inputDelta)
+    {
+
+        Vector3 localMove = transform.InverseTransformPoint(inputDelta);
+        if (localMove.z < 0)
+        {
+            localMove.z = 0;
+            localMove.x += localMove.z * (localMove.x > 0 ? 1f : -1f);
+        }
+
+        //moveDirection = localMove;
+        moveDirection += Vector3.Scale(localMove, drag) * Mathf.Abs(moveDirection.sqrMagnitude - 1);
+
+        //CharacterModel move rotation
+        if (moveDirection.sqrMagnitude > 0)
+            CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
+    }
+	*/
+>>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
 }

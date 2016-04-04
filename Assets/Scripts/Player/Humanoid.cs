@@ -56,14 +56,20 @@ public class Humanoid : MonoBehaviour
             {
                 //Play Audio
                 isDead = true;
+<<<<<<< HEAD
                 PlayAudio(0);
                 PlayAudio(1);
+=======
+>>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
                 Invoke("PlayParticle", 0.8f);
                 Invoke("RemoveObject", 2f);
             }
             if (health > 0)
             {
+<<<<<<< HEAD
                 PlayAudio(0);
+=======
+>>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
                 animator.SetTrigger("onHit");
             }
             
@@ -83,7 +89,10 @@ public class Humanoid : MonoBehaviour
     {
         Transform spiritSpawnLocation = transform.Find("SpiritSpawnPosition").transform;
         Instantiate(Resources.Load<GameObject>("Spirit"), spiritSpawnLocation.position, Quaternion.identity);
+<<<<<<< HEAD
         //Instantiate(Resources.Load<GameObject>("Spirit release"), spiritSpawnLocation.position, Quaternion.EulerAngles(-90,0,0));
+=======
+>>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
 
         particleSystems = GetComponentsInChildren<ParticleSystem>();
         particleSystems[0].Play();

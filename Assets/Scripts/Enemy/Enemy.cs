@@ -37,7 +37,11 @@ public class Enemy : Humanoid {
     }
 
 	void HealthUpdate(){
+<<<<<<< HEAD
         if (health <= 0 && !enemyAnimator.GetBool("isDead"))
+=======
+        if (health == 0 && !enemyAnimator.GetBool("isDead"))
+>>>>>>> 10e0bc7510ea7efa7ccb542df25cd86d44fb2818
         {
             enemyAnimator.SetBool("isDead", true);
             enemyAnimator.SetTrigger("onDead");
