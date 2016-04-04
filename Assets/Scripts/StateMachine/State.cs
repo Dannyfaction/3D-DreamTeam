@@ -7,7 +7,7 @@ public abstract class State : Humanoid {
 	[SerializeField] private NavMeshAgent agent;
 
     //The target for the Enemies (The Player in this case)
-	private GameObject target;
+	protected GameObject target;
 
     public GameObject targetGetter()
     {

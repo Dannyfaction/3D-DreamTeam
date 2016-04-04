@@ -48,6 +48,11 @@ ModelImporter:
     100080: transform9
     100082: upper_block
     100084: upper_block 1
+    100086: pPlane10
+    100088: pPlane6
+    100090: pPlane7
+    100092: pPlane8
+    100094: pPlane9
     400000: big_window
     400002: big_window1
     400004: big_window2
@@ -91,6 +96,11 @@ ModelImporter:
     400080: transform9
     400082: upper_block
     400084: upper_block 1
+    400086: pPlane10
+    400088: pPlane6
+    400090: pPlane7
+    400092: pPlane8
+    400094: pPlane9
     2300000: block1
     2300002: block2
     2300004: house
@@ -100,6 +110,11 @@ ModelImporter:
     2300012: pillar4
     2300014: stairs
     2300016: upper_block
+    2300018: pPlane10
+    2300020: pPlane6
+    2300022: pPlane7
+    2300024: pPlane8
+    2300026: pPlane9
     3300000: block1
     3300002: block2
     3300004: house
@@ -109,6 +124,11 @@ ModelImporter:
     3300012: pillar4
     3300014: stairs
     3300016: upper_block
+    3300018: pPlane10
+    3300020: pPlane6
+    3300022: pPlane7
+    3300024: pPlane8
+    3300026: pPlane9
     4300000: upper_block
     4300002: stairs
     4300004: pillar1
@@ -118,6 +138,11 @@ ModelImporter:
     4300012: block1
     4300014: block2
     4300016: house
+    4300018: pPlane6
+    4300020: pPlane7
+    4300022: pPlane8
+    4300024: pPlane9
+    4300026: pPlane10
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -148,7 +173,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

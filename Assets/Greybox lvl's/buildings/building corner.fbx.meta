@@ -6,11 +6,38 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: corner_building
+    100004: pPlane1
+    100006: group
+    100008: group1
+    100010: pasted__pPlane1
+    100012: polySurface1
     400000: //RootNode
+    400002: corner_building
+    400004: pPlane1
+    400006: group
+    400008: group1
+    400010: pasted__pPlane1
+    400012: polySurface1
     2300000: //RootNode
+    2300002: corner_building
+    2300004: pPlane1
+    2300006: pasted__pPlane1
+    2300008: polySurface1
     3300000: //RootNode
+    3300002: corner_building
+    3300004: pPlane1
+    3300006: pasted__pPlane1
+    3300008: polySurface1
     4300000: polySurface1
+    4300002: corner_building
+    4300004: pPlane1
+    4300006: pasted__pPlane1
     6400000: //RootNode
+    6400002: corner_building
+    6400004: pPlane1
+    6400006: pasted__pPlane1
+    6400008: polySurface1
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -1,79 +1,75 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 
 [CreateAssetMenu()]
 public class MeleeWeapon : Item {
 
-	public GameObject WeaponModel;
+	AudioSource[] audioSources;
 
-	int currentMoveIndex = 0;
-	int currentHitboxIndex = 0;
 	Moves activeMove;
-	Hitbox activeHitbox;
-	Hitbox ActiveHitbox {
-		get { return activeHitbox; }
-		set {
-			activeHitbox = value;
-			if (value != null)
-				activeHitbox.duration = Time.time + activeHitbox.comboTime;
 
-			if (activeMove != null)
-				activeMove.cooldown = Time.time + activeMove.maxCooldown;
-		}
-	}
 
 	// The hitbox object with values
 	[System.Serializable]
 	public class Hitbox {
-		[SerializeField] float damage; // Damage of the sphere collider
-		[SerializeField] Vector3 offset; // Offset of the sphere collider
-		[SerializeField] Vector3 rotation; // Rotation of the hitbox in XYZ angles
-		[SerializeField] Vector3 size = new Vector3(1, 1, 1); // Radius of the sphere collider
+		public float damage; // Damage of the sphere collider
+		public float delay;
+		public Vector3 offset; // Offset of the sphere collider
+		public Vector3 size = new Vector3(1, 1, 1); // Radius of the sphere collider
 		public float maxDuration = 1; // the duration for the active hitbox
-		[HideInInspector] public float duration; // the duration for the active hitbox
+		[HideInInspector] public float duration; // the time + duration of the hitbox
+		[HideInInspector] public List<Humanoid> damagedHumanoids; // A list of all the damaged humanoids so it can only hit the target ocne
+		public bool linkWithNext;
 		public bool combo; // If it should continue on the next hitbox instead of starting at 0 hitbox again
 		public float comboTime; // the duration to trigger the net combo attack
-		public bool chainNextHitbox; // If the next hitbox in the array should be fired at the same time
 		public int attackAnimation; // the ID of the animation for the animator controller
-
-
-		public GameObject model;
-
-		public void UpdateHitbox (Transform caster, Animator animator) {
-
-			//Debug.Log ("Doing combo: " + size);
-
-			RaycastHit[] hits = Physics.BoxCastAll (caster.position + caster.TransformDirection(offset), size/2, Vector3.forward, Quaternion.LookRotation(caster.forward));
-
-			animator.SetInteger ("AttackState", attackAnimation);
-			animator.SetTrigger ("Attack");
-
-            
-
-			foreach (RaycastHit hit in hits) {
-                //Debug.Log(hit.transform.name);
-				if (hit.transform != caster.transform && hit.transform.gameObject.GetComponent <Humanoid> ())
-					hit.transform.gameObject.GetComponent <Humanoid> ().Health -= damage;
-			}
-
-			//if (hits.Length > 0)
-			//	Debug.Log (hits [0].transform.name);
-			//else
-			//	Debug.Log ("No hits");
-		}
+		public int swingSoundID; // the ID of the sound it should play once the hitbox is active
+		public int hitSoundID; // the ID of the sound it should play once the hitbox is active
+		[HideInInspector] public bool playingSwingSound; // To make sure the sound doesn't play multible times
+		[HideInInspector] public bool playingHitSound; // To make sure the sound doesn't play multible times
 	}
 
 	// The hixboxes from the attack move to check what/where to damage
 	[System.Serializable]
 	public class Moves {
+
+		[HideInInspector] public Transform caster;
 		
 		public float maxCooldown; // In seconds
 		[HideInInspector] public float cooldown = 0;
 
 		[SerializeField]
 		public Hitbox[] hitboxes;
-		[HideInInspector] public int currentHitbox;
+		int currentHitboxIndex;
+		[HideInInspector] public int CurrentHitboxIndex {
+			get { return currentHitboxIndex; }
+			set {
+				//Reset the list
+				if (!hitboxes [currentHitboxIndex].linkWithNext)
+					activeHitboxes = new List<Hitbox> ();
+
+				//Set the new value
+				currentHitboxIndex = value % hitboxes.Length;
+
+				//Add the hitbox to the list
+				activeHitboxes.Add( hitboxes[currentHitboxIndex] );
+
+				//Reset hitbox values for a clean new use
+				hitboxes[currentHitboxIndex].damagedHumanoids = new List<Humanoid> ();
+				hitboxes [currentHitboxIndex].playingHitSound = false;
+				hitboxes [currentHitboxIndex].playingSwingSound = false;
+
+				//Set the duration of the time it was set
+				hitboxes[currentHitboxIndex].duration = Time.time + hitboxes[currentHitboxIndex].maxDuration + hitboxes[currentHitboxIndex].delay;
+
+				//Check if the hitbox has multible boxes that need to be linked
+				if (hitboxes [currentHitboxIndex].linkWithNext)
+					CurrentHitboxIndex++;
+			}
+		}
+		[HideInInspector] public List<Hitbox> activeHitboxes;
 	}
 
 
@@ -84,11 +80,61 @@ public class MeleeWeapon : Item {
 	public Moves[] moves;
 
 
+	public override void UpdateItem() {
+		
+		if (activeMove != null) {
 
-	public override void UpdateTool() {
+			Active = false;
+			Transform caster = activeMove.caster;
+			foreach (Hitbox hitbox in activeMove.activeHitboxes) {
+				
+				if (Time.time > hitbox.duration - hitbox.maxDuration && Time.time < hitbox.duration) {
+					Active = true;
+					Debug.DrawRay (caster.position + caster.up, hitbox.size, Color.red);
 
-		//if (ActiveHitbox == null)
-		//	animator.SetInteger ("AttackState", 0);
+					// Check for targets to hit
+					RaycastHit[] hits = Physics.BoxCastAll (caster.position + caster.TransformDirection (Vector3.Scale(hitbox.offset, caster.localScale)), Vector3.Scale(hitbox.size, caster.localScale) / 2, caster.forward, new Quaternion(), (hitbox.size.z / 2) * caster.localScale.z);
+
+					foreach (RaycastHit hit in hits) {
+
+						// Damage the humanoid inside the target (if it exists)
+						if (hit.transform != caster.transform && hit.transform.gameObject.GetComponent <Humanoid> () && hitbox.damagedHumanoids.IndexOf (hit.transform.gameObject.GetComponent <Humanoid> ()) == -1) {
+							hitbox.damagedHumanoids.Add (hit.transform.gameObject.GetComponent <Humanoid> ());
+							hit.transform.gameObject.GetComponent <Humanoid> ().Health -= hitbox.damage;
+
+							// Play the audio
+							if (!hitbox.playingHitSound) {
+								hitbox.playingHitSound = true;
+								PlayAudio (hitbox.hitSoundID);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	//Play a Death sound once the Enemy / Player dies
+	void PlayAudio(int input)
+	{
+		if (activeMove != null) {
+			
+			audioSources = activeMove.caster.GetComponents<AudioSource> ();
+
+			if (input >= 0 && audioSources.Length > input)
+				audioSources [input].Play ();
+			else if (input >= 0)
+				Debug.Log ("The caster does not own sound ID '" + input + "'.");
+		}
+	}
+
+
+
+	//Tell the animator to play an animation
+	void FireAnimation() {
+		animator.SetInteger ("AttackState", activeMove.hitboxes[activeMove.CurrentHitboxIndex].attackAnimation);
+		animator.SetTrigger ("Attack");
 	}
 
 
@@ -98,53 +144,20 @@ public class MeleeWeapon : Item {
 	public override void use (Transform caster, int toolMove) {
 
 
-		// Check if there is a move within moves's index and if there isn't a move already being used
-		if (toolMove < moves.Length && (toolMove == currentMoveIndex || (ActiveHitbox == null || Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime))) {
-			//Debug.Log ("Firing Move");
+		if (activeMove == null || Time.time > activeMove.hitboxes[activeMove.CurrentHitboxIndex].duration + activeMove.hitboxes[activeMove.CurrentHitboxIndex].comboTime) {
+			activeMove = moves [toolMove];
+			activeMove.caster = caster;
+			activeMove.CurrentHitboxIndex = 0;
 
-			// Check if the move is ready to use, If so, make it the current attack
-			if (moves [toolMove].cooldown < Time.time && (ActiveHitbox == null || Time.time > ActiveHitbox.duration + ActiveHitbox.comboTime)) {
-				//Debug.Log ("Resetting move");
+			FireAnimation ();
+		}
 
-				// Reset the combo
-				currentHitboxIndex = 0;
-
-
-				// (Re)set the active hitbox and move
-				activeMove = moves [toolMove];
-				ActiveHitbox = activeMove.hitboxes [currentHitboxIndex];
-				ActiveHitbox.UpdateHitbox (caster, animator);
-
-				currentHitboxIndex++;
-
-				// Set the cooldown of the move
-				activeMove.cooldown = activeMove.maxCooldown + Time.time;
-			} //else Debug.Log ("On cooldown");
-
-
-			if (activeHitbox != null && Time.time > activeHitbox.duration && Time.time < activeHitbox.duration + activeHitbox.comboTime) {
-
-				ActiveHitbox = activeMove.hitboxes [currentHitboxIndex % activeMove.hitboxes.Length];
-				ActiveHitbox.UpdateHitbox (caster, animator);
-
-				currentHitboxIndex++;
-
-				while (ActiveHitbox.chainNextHitbox) {
-					ActiveHitbox.UpdateHitbox (caster, animator);
-					ActiveHitbox = activeMove.hitboxes [currentHitboxIndex++ % activeMove.hitboxes.Length];
-				}
-
-
-				activeMove.cooldown = activeMove.maxCooldown + Time.time + activeHitbox.duration + activeHitbox.comboTime;
-
-				if (!ActiveHitbox.combo)
-					ActiveHitbox = null;
-				
-			} else {
-				//Debug.Log ("No combos left");
-                /*
-				if (ActiveHitbox != null) Debug.Log (Time.time + " ~ " + ActiveHitbox.duration + " + " + ActiveHitbox.comboTime  + " = " + (ActiveHitbox.duration + activeHitbox.comboTime));
-                */
+		if ((Time.time > activeMove.hitboxes[activeMove.CurrentHitboxIndex].duration && Time.time <= activeMove.hitboxes[activeMove.CurrentHitboxIndex].duration + activeMove.hitboxes[activeMove.CurrentHitboxIndex].comboTime)) {
+			
+			if (activeMove.hitboxes [activeMove.CurrentHitboxIndex].combo) {
+				activeMove.CurrentHitboxIndex++;
+			
+				FireAnimation ();
 			}
 		}
 	}

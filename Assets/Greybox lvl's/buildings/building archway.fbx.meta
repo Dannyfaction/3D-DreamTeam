@@ -6,10 +6,39 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: archway
+    100004: pPlane1
+    100006: pPlane2
+    100008: pPlane3
+    100010: pPlane4
+    100012: pPlane5
     400000: //RootNode
+    400002: archway
+    400004: pPlane1
+    400006: pPlane2
+    400008: pPlane3
+    400010: pPlane4
+    400012: pPlane5
     2300000: //RootNode
+    2300002: archway
+    2300004: pPlane1
+    2300006: pPlane2
+    2300008: pPlane3
+    2300010: pPlane4
+    2300012: pPlane5
     3300000: //RootNode
+    3300002: archway
+    3300004: pPlane1
+    3300006: pPlane2
+    3300008: pPlane3
+    3300010: pPlane4
+    3300012: pPlane5
     4300000: archway
+    4300002: pPlane1
+    4300004: pPlane2
+    4300006: pPlane3
+    4300008: pPlane4
+    4300010: pPlane5
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -40,7 +69,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

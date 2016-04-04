@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerControl : Character
 {
@@ -7,6 +8,15 @@ public class PlayerControl : Character
     Vector3 inputDelta = new Vector3();
     Transform camera;
     private GameObject pauseObject;
+
+    ParticleSystem dashParticle;
+
+    private float hitCooldown;
+
+    Image image;
+    GameObject redFlashObject;
+
+    private AudioSource[] audioSources;
 
     ControllerScript Joystick;
 
@@ -20,16 +30,51 @@ public class PlayerControl : Character
         set { currentCheckpoint = value; }
     }
 
+    [SerializeField]
+    protected float health;
+    public float Health
+    {
+        get { return health; }
+        set
+        {
+            if (hitCooldown <= 0)
+            {
+                health = value;
+                if (health == 0 && transform.tag == "Enemy")
+                {
+                    //Play Audio
+                    //isDead = true;
+                    //Invoke("PlayParticle", 1f);
+                    //Invoke("RemoveObject", 2f);
+                }
+                else if (health <= 0 && transform.tag == "Player")
+                {
+                    //Play animation
+                    //cameraScript = playerCamera.GetComponent<CameraScript>();
+                    //cameraScript.DeathCamera();
+                    //PlayAudio(1);
+                }
+            }
+        }
+    }
+
     void Start()
     {
         Joystick = GetComponent<ControllerScript>();
         camera = Camera.main.transform;
+
+        dashParticle = transform.Find("dust trail dustup").GetComponent<ParticleSystem>();
+
+        redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
+        image = redFlashObject.GetComponent<Image>();
+
         pauseObject = GameObject.Find("PauseMenu").transform.Find("Menu").gameObject;
         base.Start();
     }
 
     void FixedUpdate()
     {
+        hitCooldown--;
         if (Health == 0)
         {
             Invoke("RespawnCharacter", 8f);
@@ -40,24 +85,36 @@ public class PlayerControl : Character
 
         inputDelta = new Vector3(Move_X, 0, -Move_y);
 
-        // Read the Inputs
-        inputDelta = new Vector3(Input.GetAxisRaw( "Horizontal" ), 0, Input.GetAxisRaw( "Vertical" ));
+        // Check if the character is using a item or not
+		if (items [SelectedItem] == null || !items [SelectedItem].Active) {
+			
+			// Read the Inputs
+			inputDelta = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 
-        // Give the commands
-        //Move(transform.position - transform.TransformDirection(inputDelta * -1));
-		
-		Move (transform.position - Vector3.Scale(camera.TransformDirection(inputDelta * -1), new Vector3(1, 0, 1)).normalized);
 
-        if (Input.GetButtonDown("Fire1")){
-            //useTool(transform.Find("Weapon").GetComponent<WeaponScript>());
-			useSelectedItem (0);
+			// Give the commands
+			Move (transform.position - Vector3.Scale (camera.TransformDirection (inputDelta * -1), new Vector3 (1, 0, 1)).normalized);
+
+
+			if (Input.GetButtonDown ("Fire1")) {
+				SelectedItem = 0;
+				useSelectedItem (0);
+			} else if (inputDelta.sqrMagnitude > 1f)
+				SelectedItem = 1;
+
+			if (Input.GetKeyDown (KeyCode.C))
+				SelectedItem++;
+
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                animator.SetTrigger("Dash");
+                dashParticle.Play();
+            }
+			
+		} else {
+			inputDelta = Vector3.zero;
+			Move (transform.position);
 		}
-
-        /*
-		if (Input.GetKeyDown(KeyCode.C)){
-			SelectedItem += 1;
-		}
-        */
 
         //Pause the game once start button on controller has been pressed
         //For Controller Use
@@ -89,8 +146,51 @@ public class PlayerControl : Character
             pauseObject.SetActive(false);
         }
 
+
+
+        if (image.color.a > 0)
+        {
+            image.color = new Color(100f, 0f, 0f, image.color.a - 0.015f);
+        }
+
         // Fire Fixed update
         base.FixedUpdate();
+    }
+
+    public virtual void Knockback(Transform input)
+    {
+        //transform.localPosition -= transform.InverseTransformDirection(transform.forward) * 2f;
+        if (hitCooldown <= 0)
+        {
+            if (transform.tag == "Player")
+            {
+                controller.Move((Vector3.MoveTowards(Vector3.zero, input.forward, 10f)));
+                int randomHitAudio = Random.Range(1, 3);
+                FlashScreenRed();
+                PlayAudio(randomHitAudio);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, input.up, 10f);
+                //Play audio
+                //Test knockback on enemy
+            }
+        }
+        hitCooldown = 50;
+    }
+
+    private void FlashScreenRed()
+    {
+        GameObject redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
+        Image image = redFlashObject.GetComponent<Image>();
+        image.color = new Color(100f, 0f, 0f, 1f);
+    }
+
+    //Play a Death sound once the Enemy / Player dies
+    private void PlayAudio(int input)
+    {
+        audioSources = GetComponents<AudioSource>();
+        audioSources[input].Play();
     }
 
     private void RespawnCharacter()
@@ -121,7 +221,7 @@ public class PlayerControl : Character
 
         ///////////////////////////////////////////////
         //cameraScript.CameraReset(checkpointRotation);
-        //health = 100;
+        Health = 100;
         //Fix animations
     }
 }

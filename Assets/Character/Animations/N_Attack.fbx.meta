@@ -232,7 +232,7 @@ ModelImporter:
     4300004: Torso3
     4300006: Hand1
     4300008: pCube1
-    7400000: N_Attack01`
+    7400000: N_Attack01
     7400002: N_Attack02
     7400004: N_Attack03
     9500000: //RootNode
@@ -265,7 +265,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: N_Attack01`
+      name: N_Attack01
       takeName: N_Attack
       firstFrame: 0
       lastFrame: 28

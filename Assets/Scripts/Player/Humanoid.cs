@@ -8,6 +8,9 @@ public class Humanoid : MonoBehaviour
     protected bool isDead = false;
     private ParticleSystem[] particleSystems;
     private AudioSource[] audioSources;
+    [SerializeField]
+    private Transform knockbackPosition;
+    private Animator animator;
 
     /*
     protected WeaponScript weaponScript;
@@ -48,20 +51,22 @@ public class Humanoid : MonoBehaviour
         set
         {
             health = value;
-            if (health == 0 && transform.tag == "Enemy")
+            animator = GetComponent<Animator>();
+            if (health == 0)
             {
                 //Play Audio
                 isDead = true;
-                Invoke("PlayParticle",1f);
+                PlayAudio(0);
+                PlayAudio(1);
+                Invoke("PlayParticle", 0.8f);
                 Invoke("RemoveObject", 2f);
             }
-            else if (health <= 0 && transform.tag == "Player")
+            if (health > 0)
             {
-                //Play animation
-                cameraScript = playerCamera.GetComponent<CameraScript>();
-                cameraScript.DeathCamera();
-                PlayAudio(1);
+                PlayAudio(0);
+                animator.SetTrigger("onHit");
             }
+            
         }
     }
 
@@ -76,10 +81,13 @@ public class Humanoid : MonoBehaviour
     //Plays particles
     private void PlayParticle()
     {
-        Instantiate(Resources.Load<GameObject>("Spirit"), new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
+        Transform spiritSpawnLocation = transform.Find("SpiritSpawnPosition").transform;
+        Instantiate(Resources.Load<GameObject>("Spirit"), spiritSpawnLocation.position, Quaternion.identity);
+        //Instantiate(Resources.Load<GameObject>("Spirit release"), spiritSpawnLocation.position, Quaternion.EulerAngles(-90,0,0));
+
         particleSystems = GetComponentsInChildren<ParticleSystem>();
         particleSystems[0].Play();
-        particleSystems[1].Play();
+        //particleSystems[1].Play();
     }
 
     //Play a Death sound once the Enemy / Player dies
@@ -95,21 +103,10 @@ public class Humanoid : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void Knockback(Transform input)
+    public void Knockback()
     {
-        //transform.localPosition -= transform.InverseTransformDirection(transform.forward) * 2f;
-        if (transform.tag == "Player")
-        {
-            Controller.Move((Vector3.MoveTowards(Vector3.zero, input.forward, 10f)));
-            int randomHitAudio = Random.Range(2,4);
-            PlayAudio(randomHitAudio);
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, input.up, 10f);
-            //Play audio
-            //Test knockback on enemy
-        }
+        //transform.position = Vector3.MoveTowards(transform.root.position, -transform.root.forward, 10f);
+        //transform.position = knockbackPosition.position;
     }
 
     protected void move(Vector3 moveDirection)

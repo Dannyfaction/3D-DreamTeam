@@ -6,10 +6,126 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: polySurface1
+    100004: pPlane1
+    100006: pPlane10
+    100008: pPlane2
+    100010: pPlane3
+    100012: pPlane4
+    100014: pPlane5
+    100016: pPlane6
+    100018: pPlane7
+    100020: pPlane8
+    100022: pPlane9
+    100024: group
+    100026: group1
+    100028: group2
+    100030: group3
+    100032: group4
+    100034: group5
+    100036: pasted__pPlane1
+    100038: pasted__pPlane10
+    100040: pasted__pPlane2
+    100042: pasted__pPlane3
+    100044: pasted__pPlane4
+    100046: pasted__pPlane5
+    100048: pasted__pPlane6
+    100050: pasted__pPlane7
+    100052: pasted__pPlane8
+    100054: pasted__pPlane9
     400000: //RootNode
+    400002: polySurface1
+    400004: pPlane1
+    400006: pPlane10
+    400008: pPlane2
+    400010: pPlane3
+    400012: pPlane4
+    400014: pPlane5
+    400016: pPlane6
+    400018: pPlane7
+    400020: pPlane8
+    400022: pPlane9
+    400024: group
+    400026: group1
+    400028: group2
+    400030: group3
+    400032: group4
+    400034: group5
+    400036: pasted__pPlane1
+    400038: pasted__pPlane10
+    400040: pasted__pPlane2
+    400042: pasted__pPlane3
+    400044: pasted__pPlane4
+    400046: pasted__pPlane5
+    400048: pasted__pPlane6
+    400050: pasted__pPlane7
+    400052: pasted__pPlane8
+    400054: pasted__pPlane9
     2300000: //RootNode
+    2300002: polySurface1
+    2300004: pPlane1
+    2300006: pPlane10
+    2300008: pPlane2
+    2300010: pPlane3
+    2300012: pPlane4
+    2300014: pPlane5
+    2300016: pPlane6
+    2300018: pPlane7
+    2300020: pPlane8
+    2300022: pPlane9
+    2300024: pasted__pPlane1
+    2300026: pasted__pPlane10
+    2300028: pasted__pPlane2
+    2300030: pasted__pPlane3
+    2300032: pasted__pPlane4
+    2300034: pasted__pPlane5
+    2300036: pasted__pPlane6
+    2300038: pasted__pPlane7
+    2300040: pasted__pPlane8
+    2300042: pasted__pPlane9
     3300000: //RootNode
+    3300002: polySurface1
+    3300004: pPlane1
+    3300006: pPlane10
+    3300008: pPlane2
+    3300010: pPlane3
+    3300012: pPlane4
+    3300014: pPlane5
+    3300016: pPlane6
+    3300018: pPlane7
+    3300020: pPlane8
+    3300022: pPlane9
+    3300024: pasted__pPlane1
+    3300026: pasted__pPlane10
+    3300028: pasted__pPlane2
+    3300030: pasted__pPlane3
+    3300032: pasted__pPlane4
+    3300034: pasted__pPlane5
+    3300036: pasted__pPlane6
+    3300038: pasted__pPlane7
+    3300040: pasted__pPlane8
+    3300042: pasted__pPlane9
     4300000: polySurface1
+    4300002: pPlane1
+    4300004: pPlane2
+    4300006: pPlane3
+    4300008: pPlane4
+    4300010: pPlane5
+    4300012: pPlane6
+    4300014: pPlane7
+    4300016: pPlane8
+    4300018: pPlane9
+    4300020: pPlane10
+    4300022: pasted__pPlane1
+    4300024: pasted__pPlane2
+    4300026: pasted__pPlane3
+    4300028: pasted__pPlane4
+    4300030: pasted__pPlane5
+    4300032: pasted__pPlane6
+    4300034: pasted__pPlane7
+    4300036: pasted__pPlane8
+    4300038: pasted__pPlane9
+    4300040: pasted__pPlane10
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -40,7 +156,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

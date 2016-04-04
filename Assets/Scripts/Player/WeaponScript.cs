@@ -72,6 +72,7 @@ public class WeaponScript : MonoBehaviour {
             attackCooldown -= Time.deltaTime;
         }
         */
+        /*
         if (transform.tag == "Enemy")
         {
             if (attackCooldown + comboTime > 0 && !Hitbox.activeSelf)
@@ -83,13 +84,14 @@ public class WeaponScript : MonoBehaviour {
 
             }
         }
+        */
 
        
 	}
 
     void OnTriggerEnter(Collider Col)
     {
-        Character character = Col.GetComponent<Character>();
+        PlayerControl character = Col.GetComponent<PlayerControl>();
         AudioSource hitSound = Col.GetComponent<AudioSource>();
         if (Col.tag == "Player")
         {
