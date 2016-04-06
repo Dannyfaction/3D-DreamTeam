@@ -29,12 +29,6 @@ public class WorldEventScript : MonoBehaviour {
         Destroy(GameObject.Find("Event_1"));
     }
 
-    public void Event2()
-    {
-        cameraEvents.Event_2();
-
-        Destroy(GameObject.Find("Event_2"));
-    }
 
     public void Event3()
     {

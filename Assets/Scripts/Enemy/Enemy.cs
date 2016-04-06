@@ -15,6 +15,7 @@ public class Enemy : Humanoid {
     //Which spawnpoints 
     private List<GameObject> waypoints;
     private Animator enemyAnimator;
+    float floatValue = 0f;
     public List<GameObject> waypointGetter()
     {
         return waypoints;
@@ -33,7 +34,13 @@ public class Enemy : Humanoid {
 
     void Update()
     {
-		HealthUpdate();
+        if (isDead)
+        {
+            floatValue += 0.0125f;
+            shader.material.SetFloat("_DissolveIntensity", floatValue);
+        }
+        hitAnimationCooldown--;
+        HealthUpdate();
     }
 
 	void HealthUpdate(){
@@ -56,8 +63,9 @@ public class Enemy : Humanoid {
         enemyAnimator = GetComponentInChildren<Animator>();
         stateMachine = GetComponent<StateMachine>();
         waypoints = new List<GameObject>();
+        shader = transform.Find("Character1").GetComponent<SkinnedMeshRenderer>();
 
-		MakeStates();
+        MakeStates();
 		stateMachine.SetState( StateID.Wandering );
 	}
 	

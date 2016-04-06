@@ -55,8 +55,10 @@ public class PlayerScript : Humanoid {
         }
         */
         //Velocity change
+        /*
         if (characterAnimator.GetInteger("AttackState") == 0)
             move(cameraObject.transform.right * moveDelta.x + cameraObject.transform.forward * moveDelta.z);
+            */
 
 
         //Animator Boolean

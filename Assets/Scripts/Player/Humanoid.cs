@@ -7,18 +7,12 @@ public class Humanoid : MonoBehaviour
     protected CharacterController Controller;
     protected bool isDead = false;
     private ParticleSystem[] particleSystems;
+    [SerializeField] private ParticleSystem metalImpactParticle;
     private AudioSource[] audioSources;
     [SerializeField]
-    private Transform knockbackPosition;
     private Animator animator;
-
-    /*
-    protected WeaponScript weaponScript;
-    public WeaponScript SetWeapon
-    {
-        set { weaponScript = value; }
-    }
-    */
+    protected float hitAnimationCooldown = 0;
+    protected SkinnedMeshRenderer shader;
 
     //The Character's Model, (not collision or holder)
     [SerializeField] protected GameObject CharacterModel;
@@ -64,7 +58,12 @@ public class Humanoid : MonoBehaviour
             if (health > 0)
             {
                 PlayAudio(0);
-                animator.SetTrigger("onHit");
+                metalImpactParticle.Play();
+                if (hitAnimationCooldown < 0)
+                {
+                    animator.SetTrigger("onHit");
+                    hitAnimationCooldown = 300;
+                }
             }
             
         }
@@ -82,11 +81,13 @@ public class Humanoid : MonoBehaviour
     private void PlayParticle()
     {
         Transform spiritSpawnLocation = transform.Find("SpiritSpawnPosition").transform;
-        Instantiate(Resources.Load<GameObject>("Spirit"), spiritSpawnLocation.position, Quaternion.identity);
+        Vector3 spiritSpawnVector = spiritSpawnLocation.transform.position;
+        Instantiate(Resources.Load<GameObject>("Spirit"), new Vector3(spiritSpawnVector.x,spiritSpawnVector.y,spiritSpawnVector.z), Quaternion.identity);
         //Instantiate(Resources.Load<GameObject>("Spirit release"), spiritSpawnLocation.position, Quaternion.EulerAngles(-90,0,0));
 
         particleSystems = GetComponentsInChildren<ParticleSystem>();
         particleSystems[0].Play();
+        particleSystems[1].Play();
         //particleSystems[1].Play();
     }
 
@@ -101,36 +102,5 @@ public class Humanoid : MonoBehaviour
     private void RemoveObject()
     {
         Destroy(this.gameObject);
-    }
-
-    public void Knockback()
-    {
-        //transform.position = Vector3.MoveTowards(transform.root.position, -transform.root.forward, 10f);
-        //transform.position = knockbackPosition.position;
-    }
-
-    protected void move(Vector3 moveDirection)
-    {
-        
-        //Move the character
-        Controller.Move((Vector3.MoveTowards(Vector3.zero, moveDirection, 1) * moveSpeed + (characterCanFloat ? Vector3.zero : Physics.gravity)) * Time.deltaTime);
-
-        //Animator Boolean
-        if (transform.tag == "Player")
-        {
-            if (moveDirection.x != 0f || moveDirection.z != 0f)
-            {
-                isMoving = true;
-            }
-            else
-            {
-                isMoving = false;
-            }
-        }
-
-        //CharacterModel move rotation
-        if (moveDirection.sqrMagnitude > 0)
-            CharacterModel.transform.LookAt(CharacterModel.transform.position + moveDirection);
-
     }
 }

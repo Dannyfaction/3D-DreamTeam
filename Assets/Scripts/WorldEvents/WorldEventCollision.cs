@@ -22,11 +22,6 @@ public class WorldEventCollision : MonoBehaviour {
             worldEvents.Event1();
         }
 
-        if (other.gameObject.name == "Event_2")
-        {
-            worldEvents.Event2();
-        }
-
         if (other.gameObject.name == "Event_3")
         {
             worldEvents.Event3();

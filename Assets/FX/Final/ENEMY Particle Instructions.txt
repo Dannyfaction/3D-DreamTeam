@@ -1,0 +1,38 @@
+Enemy Particles
+
+1. Back gas, always playing, gas comes from the vent on the back of the character [attach to 'Character5_LeftHand' in the characters' joint heirarchy]
+
+
+2. Chainsaw smoke, always playing, smoke comes from the vent on the side of the chainsaw [attach to 'Character5_LeftHand' in the characters' joint heirarchy]
+
+
+3. Chainsaw sparks, always playing, Sparks that come from the opening where the chainsaw blade enters the base of the chainsaw.
+[attach to 'Character5_LeftHand' in the characters' joint heirarchy]
+
+
+4. Chainsaw tip trail, only active on attack animation
+[attach to 'Character5_LeftHand' in the characters' joint heirarchy]
+
+
+5. Death Impact, Playes when enemy hit the ground in its death animation
+
+
+6. Foot impact, Plays when enemy takes a step in walk/run cycle, or only on the steps in the attack animation if it costs too much preformance
+
+
+7. Joint sparks, always playing, Place at least 3 on the character on the knee, elbow etc.[attach to the closest joint in the characters' joint heirarchy] 
+
+
+8. Spirit ball, This is the spirit that leaves the enemy body when the player defeats it.
+
+
+9. Large metal sparks, not really sure what to use it for, but it could work as impact on the player
+
+
+10. Spirit burst, This effect plays when the enemy spirit leaves the enemy body.
+
+
+11. Spirit cleanse, This effect plays when the player collects the enemy spirit.
+
+
+12. Spirit Intake, This effect plays when a sprit enters an inactive enemy body (not sure if we're still doing that though)

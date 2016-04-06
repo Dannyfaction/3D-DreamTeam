@@ -1,38 +1,38 @@
-attack charge/explosion
+[X]attack charge/explosion
  -for charging and using of your attack
 
-bear arm ambiend
+[ ]bear arm ambiend
  -ambient for spirit bear arm attack
 
-dash trail
+[ ]dash trail
  -dust trail voor dash
 
-dash wind
+[x]dash wind
  -wind trail voor dash
 
-dream c (catcher) ambient
+[ ]dream c (catcher) ambient
  -ambient voor dreamcatcher
 
-dust explosion 
+[ ]dust explosion 
  -voor pipes falling down
 
-dust particle death
+[ ]dust particle death
  -death character knie+body
 
-dust run en runup
+[x]dust run en runup
  -spreekt voor zichzelf
 
-metal impact
+[x]metal impact
  -impact attack
 
-spirit escape
+[ ]spirit escape
  -bij death, spirtits leave dream c
 
-weapon trace
+[x]weapon trace
  -spreekt voor zicht
 
-whirlwind trail
+[ ]whirlwind trail --nee
  -360 attack player
 
-wind slash
+[ ]wind slash
  -slash attack

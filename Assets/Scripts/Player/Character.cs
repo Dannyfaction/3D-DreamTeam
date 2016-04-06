@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
 				items [selectedItem].itemModel.transform.parent = itemBelt;
 				items [selectedItem].itemModel.transform.localPosition = Vector3.zero;
 				items [selectedItem].itemModel.transform.localRotation = new Quaternion();
-			} else if (items [selectedItem])
+			} else if (items [selectedItem] && items [selectedItem].itemModel != null)
 				items [selectedItem].itemModel.SetActive (false);
 
 			//Update the current selected item

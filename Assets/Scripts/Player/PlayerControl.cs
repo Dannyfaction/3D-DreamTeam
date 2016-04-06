@@ -9,7 +9,16 @@ public class PlayerControl : Character
     Transform camera;
     private GameObject pauseObject;
 
-    ParticleSystem dashParticle;
+    private bool isCamEvent;
+    public bool IsCamEvent
+    {
+        set { isCamEvent = value; }
+    }
+
+    private bool isDusted;
+
+    [SerializeField] ParticleSystem dashParticle;
+    [SerializeField] ParticleSystem dustParticle;
 
     private float hitCooldown;
 
@@ -40,19 +49,12 @@ public class PlayerControl : Character
             if (hitCooldown <= 0)
             {
                 health = value;
-                if (health == 0 && transform.tag == "Enemy")
+                if (health <= 0 && !animator.GetBool("isDead"))
                 {
-                    //Play Audio
-                    //isDead = true;
-                    //Invoke("PlayParticle", 1f);
-                    //Invoke("RemoveObject", 2f);
-                }
-                else if (health <= 0 && transform.tag == "Player")
-                {
-                    //Play animation
-                    //cameraScript = playerCamera.GetComponent<CameraScript>();
-                    //cameraScript.DeathCamera();
-                    //PlayAudio(1);
+                    animator.SetBool("isDead", true);
+                    animator.SetTrigger("onDead");
+                    //controller.enabled = false;
+                    //Destroy(this.gameObject, 4f);
                 }
             }
         }
@@ -62,19 +64,17 @@ public class PlayerControl : Character
     {
         Joystick = GetComponent<ControllerScript>();
         camera = Camera.main.transform;
-
-        dashParticle = transform.Find("dust trail dustup").GetComponent<ParticleSystem>();
-
         redFlashObject = GameObject.Find("PauseMenu").transform.Find("RedFlash").gameObject;
         image = redFlashObject.GetComponent<Image>();
-
         pauseObject = GameObject.Find("PauseMenu").transform.Find("Menu").gameObject;
         base.Start();
     }
 
     void FixedUpdate()
     {
+        Debug.Log(isCamEvent);
         hitCooldown--;
+        DustAtFeet();
         if (Health == 0)
         {
             Invoke("RespawnCharacter", 8f);
@@ -83,7 +83,7 @@ public class PlayerControl : Character
         Move_X = Joystick.LeftStick_X * movementSpeed;
         Move_y = Joystick.LeftStick_Y * movementSpeed;
 
-        inputDelta = new Vector3(Move_X, 0, -Move_y);
+            inputDelta = new Vector3(Move_X, 0, -Move_y);
 
         // Check if the character is using a item or not
 		if (items [SelectedItem] == null || !items [SelectedItem].Active) {
@@ -91,27 +91,30 @@ public class PlayerControl : Character
 			// Read the Inputs
 			inputDelta = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 
-
-			// Give the commands
-			Move (transform.position - Vector3.Scale (camera.TransformDirection (inputDelta * -1), new Vector3 (1, 0, 1)).normalized);
-
-
-			if (Input.GetButtonDown ("Fire1")) {
+            if (!isCamEvent)
+            {
+                // Give the commands
+                Move(transform.position - Vector3.Scale(camera.TransformDirection(inputDelta * -1), new Vector3(1, 0, 1)).normalized);
+            }
+                if (Input.GetButtonDown ("Fire1")) {
 				SelectedItem = 0;
 				useSelectedItem (0);
 			} else if (inputDelta.sqrMagnitude > 1f)
 				SelectedItem = 1;
 
+            /*
 			if (Input.GetKeyDown (KeyCode.C))
 				SelectedItem++;
+            */
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            if (Input.GetKeyDown(KeyCode.LeftAlt) || Joystick.RightTrigger > 0)
             {
-                animator.SetTrigger("Dash");
-                dashParticle.Play();
+                //animator.SetTrigger("Dash");
+                SelectedItem = 1;
+                useSelectedItem(0);
             }
-			
-		} else {
+
+        } else {
 			inputDelta = Vector3.zero;
 			Move (transform.position);
 		}
@@ -177,6 +180,18 @@ public class PlayerControl : Character
             }
         }
         hitCooldown = 50;
+    }
+
+    private void DustAtFeet()
+    {
+        if (animator.GetFloat("Forward") >= 0.8f && isDusted == false)
+        {
+            isDusted = true;
+            dustParticle.Play();
+        }else if (animator.GetFloat("Forward") < 0.8f)
+        {
+            isDusted = false;
+        }
     }
 
     private void FlashScreenRed()

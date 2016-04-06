@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 6d9c4015d36e216448c6a97ab2b09084
+timeCreated: 1459934819
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bill_board_2
+    100002: Bill_board_3
+    100004: Billboard_1
+    100006: //RootNode
+    100008: Board_1
+    100010: Board_1_2
+    100012: Board_1_3
+    100014: Board_2
+    100016: Board_2_2
+    100018: Board_2_3
+    100020: Connect_screw
+    100022: Cross_rail
+    100024: Exhaust
+    100026: Manhole_cover
+    100028: Mid_pole
+    100030: Rain_connect_base
+    100032: Under_pole
+    100034: Under_pole_base
+    400000: Bill_board_2
+    400002: Bill_board_3
+    400004: Billboard_1
+    400006: //RootNode
+    400008: Board_1
+    400010: Board_1_2
+    400012: Board_1_3
+    400014: Board_2
+    400016: Board_2_2
+    400018: Board_2_3
+    400020: Connect_screw
+    400022: Cross_rail
+    400024: Exhaust
+    400026: Manhole_cover
+    400028: Mid_pole
+    400030: Rain_connect_base
+    400032: Under_pole
+    400034: Under_pole_base
+    2300000: Bill_board_2
+    2300002: Bill_board_3
+    2300004: Billboard_1
+    2300006: Board_1
+    2300008: Board_1_2
+    2300010: Board_1_3
+    2300012: Board_2
+    2300014: Board_2_2
+    2300016: Board_2_3
+    2300018: Connect_screw
+    2300020: Cross_rail
+    2300022: Exhaust
+    2300024: Manhole_cover
+    2300026: Mid_pole
+    2300028: Rain_connect_base
+    2300030: Under_pole
+    2300032: Under_pole_base
+    3300000: Bill_board_2
+    3300002: Bill_board_3
+    3300004: Billboard_1
+    3300006: Board_1
+    3300008: Board_1_2
+    3300010: Board_1_3
+    3300012: Board_2
+    3300014: Board_2_2
+    3300016: Board_2_3
+    3300018: Connect_screw
+    3300020: Cross_rail
+    3300022: Exhaust
+    3300024: Manhole_cover
+    3300026: Mid_pole
+    3300028: Rain_connect_base
+    3300030: Under_pole
+    3300032: Under_pole_base
+    4300000: Rain_connect_base
+    4300002: Cross_rail
+    4300004: Under_pole_base
+    4300006: Mid_pole
+    4300008: Under_pole
+    4300010: Connect_screw
+    4300012: Manhole_cover
+    4300014: Exhaust
+    4300016: Bill_board_3
+    4300018: Board_1
+    4300020: Board_2
+    4300022: Bill_board_2
+    4300024: Board_1_2
+    4300026: Board_2_2
+    4300028: Billboard_1
+    4300030: Board_1_3
+    4300032: Board_2_3
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

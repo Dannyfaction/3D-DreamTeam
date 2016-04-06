@@ -13,6 +13,7 @@ public class ControllerScript : MonoBehaviour
     private float rightTrigger;
     private float leftTrigger;
     private float A;
+    private float B;
     private float start;
 
     void Start()
@@ -77,5 +78,6 @@ public class ControllerScript : MonoBehaviour
 
         //Gets A from the Unity Inputmanager (A is the green button on the Xbox Controller)
         A = Input.GetAxis("A");
+        B = Input.GetAxis("B");
     }
 }

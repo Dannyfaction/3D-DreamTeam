@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SpiritCollect : MonoBehaviour {
 
-    private float yValue = 0;
+    private float yValue;
+    private float initialYpos;
     private GameObject player;
     private float speed = 3f;
     private bool reachedTop = false;
@@ -14,6 +15,8 @@ public class SpiritCollect : MonoBehaviour {
     {
         player = GameObject.Find("N_ThirdPersonPlayer");
         particleSystems = GetComponentsInChildren<ParticleSystem>();
+        yValue = transform.position.y;
+        initialYpos = transform.position.y + 8f;
     }
 
     void Update() {
@@ -21,7 +24,7 @@ public class SpiritCollect : MonoBehaviour {
         {
             speed += 0.1f;
         }
-        if (transform.position.y < 8f && !reachedTop)
+        if (transform.position.y < initialYpos && !reachedTop)
         {
             yValue += 4 * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, yValue, transform.position.z);
@@ -36,6 +39,7 @@ public class SpiritCollect : MonoBehaviour {
             {
                 particleSystems[0].Stop();
                 particleSystems[1].Stop();
+                particleSystems[3].Play();
                 Destroy(transform.Find("ENEMY Spirit Ball Shine").gameObject);
                 Destroy(transform.Find("Point light").gameObject);
                 Invoke("DestroyObject",3f);
